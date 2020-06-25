@@ -12,7 +12,7 @@
     <Grid>
         <Label x:Name="lbBienUser" Content="Bievenido" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="20" Loaded="lbBienUser_Loaded"/>
         <Button x:Name="btnCarrito" Content="Ir al carrito" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,25" Width="150" Height="50" Click="btnCarrito_Click"/>
-        <Button x:Name="btnAddProducto" Content="Agregar producto" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,400,25" Width="150" Height="50" Click="btnAddProducto_Click"/>
+        <Button x:Name="btnAddProducto" Content="Agregar producto" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,400,25" Width="150" Height="50" Click="btnAddProducto_Click" Loaded="btnAddProducto_Loaded"/>
         <Button x:Name="btnEditProducto" Content="Editar producto" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,-400,25" Width="150" Height="50" Click="btnEditProducto_Click"/>
         <Button x:Name="btnVolver" Content="Volver" VerticalAlignment="Top" Width="60" Height="30" Margin="0,50,-1100,0" Click="btnVolver_Click"/>
         <Grid Margin="100">
@@ -35,14 +35,14 @@
                         <GridViewColumn x:Name="gvcCantidad" Header="Cantidad" Width="120">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate x:Name="DataTemplateNumerico">
-                                    <wpfTool:IntegerUpDown x:Name="SelecCantidad" Value="{Binding CantidadProducto}" Increment="1" Maximum="1000" Minimum="0" ValueChanged="SelecCantidad_ValueChanged" AutomationProperties.Name="SelectCantidad2" TextAlignment="Center" />
+                                    <wpfTool:IntegerUpDown x:Name="SelecCantidad" Value="{Binding CantidadProducto}" Increment="1" Maximum="1000" Minimum="0" ValueChanged="SelecCantidad_ValueChanged" AutomationProperties.Name="SelectCantidad2" TextAlignment="Center" Loaded="SelecCantidad_Loaded" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button x:Name="btnCarritoAdd" Content="Añadir al carrito" Click="btnCarritoAdd_Click"></Button>
+                                    <Button x:Name="btnCarritoAdd" Content="Añadir al carrito" Click="btnCarritoAdd_Click" Loaded="btnCarritoAdd_Loaded"></Button>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

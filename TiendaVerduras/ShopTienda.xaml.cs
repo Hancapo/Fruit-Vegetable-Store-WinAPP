@@ -308,8 +308,28 @@ namespace TiendaVerduras
             this.NavigationService.GoBack();
         }
 
+        private void btnAddProducto_Loaded(object sender, RoutedEventArgs e)
+        {
 
+        }
 
+        private void btnCarritoAdd_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (EsAdmin)
+            {
+                var loadd = (sender as Button).Visibility = Visibility.Hidden;
+
+            }
+        }
+
+        private void SelecCantidad_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (EsAdmin)
+            {
+                var loadd = (sender as IntegerUpDown).Visibility = Visibility.Hidden;
+                gvcCantidad.Header = "";
+            }
+        }
     }
 
 
