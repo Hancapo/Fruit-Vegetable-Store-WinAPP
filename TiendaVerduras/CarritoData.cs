@@ -16,5 +16,6 @@ namespace TiendaVerduras
         public int SubtotalProducto { get; set; }
         public int SubtotalProductoIVA { get; set; }
         public string UnidadProducto { get; set; }
+        public int StockProducto { get; set; }
     }
 }

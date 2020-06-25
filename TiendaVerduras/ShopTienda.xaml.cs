@@ -13,6 +13,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
+using System.Xml.Schema;
 using Xceed.Wpf.AvalonDock.Layout;
 using Xceed.Wpf.Toolkit;
 
@@ -26,6 +27,8 @@ namespace TiendaVerduras
         public static int test;
         List<CarritoData> NuevoCarrito = new List<CarritoData>();
         Utilidades u = new Utilidades();
+        public bool EsAdmin { get; set; }
+        public bool SePuedeAgregar { get; set; }
 
         public ShopTienda()
         {
@@ -33,7 +36,6 @@ namespace TiendaVerduras
             CargarUsuario();
             MostrarProductos();
             MetodoPagoData mpd = new MetodoPagoData();
-            mpd.
 
         }
 
@@ -51,19 +53,38 @@ namespace TiendaVerduras
             string correoline;
             string stlines = File.ReadAllLines("userdata/user.dat").First();
             correoline = u.DecodearString(stlines.Split(',')[0]);
+
+            if (u.DecodearString(stlines.Split(',')[3]) == "admin")
+            {
+                EsAdmin = true;
+            }
+            else
+            {
+                EsAdmin = false;
+            }
+
+
+            if (!EsAdmin)
+            {
+                btnAddProducto.Visibility = Visibility.Hidden;
+                btnEditProducto.Visibility = Visibility.Hidden;
+                
+
+            }
+
             return correoline;
             
         }
 
-        SqlConnection sqljaja = new SqlConnection(@"Data Source=(localdb)\servertest;Initial Catalog=Fruteria;Integrated Security=true;");
+        SqlConnection sqlcon = new SqlConnection(@"Data Source=(localdb)\servertest;Initial Catalog=Tienda;Integrated Security=true;");
 
         public void MostrarProductos()
         {
 
 
-            sqljaja.Open();
+            sqlcon.Open();
 
-            SqlCommand esecuelecom = new SqlCommand("SELECT * FROM dbo.Producto", sqljaja);
+            SqlCommand esecuelecom = new SqlCommand("SELECT * FROM dbo.Productos", sqlcon);
             SqlDataAdapter sda = new SqlDataAdapter(esecuelecom);
             DataTable dt = new DataTable();
 
@@ -82,18 +103,19 @@ namespace TiendaVerduras
                     Id = Convert.ToInt32(dt.Rows[i]["Id"]),
                     NombreProducto = dt.Rows[i]["nom_prod"].ToString(),
                     PrecioProducto = Convert.ToInt32(dt.Rows[i]["Precio"]),
-                    StockProducto = Convert.ToInt32(dt.Rows[i]["Stock"]),
+                    StockProducto = Convert.ToInt32(dt.Rows[i]["stock"]),
                     FuenteImagen = Directory.GetCurrentDirectory() + "/resources/" + dt.Rows[i]["Id"] + ".jpg",
                     CantidadProducto = Convert.ToInt32(new IntegerUpDown().Value),
-                    UnidadProducto = dt.Rows[i]["Unidad"].ToString()
+                    UnidadProducto = dt.Rows[i]["unidad"].ToString()
                     
                     
                 };
 
+                
                 listproducto.Add(dataproductos);
 
             }
-            sqljaja.Close();
+            sqlcon.Close();
             ListaProductoR.ItemsSource = listproducto;
 
              
@@ -109,7 +131,7 @@ namespace TiendaVerduras
 
         private void SelecCantidad_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            var actboton = (sender as IntegerUpDown).Value;
+            var actboton = (sender as IntegerUpDown);
             
             int indicecantidad = ListaProductoR.Items.IndexOf(actboton);
             
@@ -127,6 +149,11 @@ namespace TiendaVerduras
             var cantidadvalida = valuex.CantidadProducto;
             //System.Windows.MessageBox.Show(valuex.CantidadProducto.ToString());
 
+            int stocko = valuex.StockProducto;
+
+
+
+
             if (cantidadvalida == 0)
             {
                 System.Windows.MessageBox.Show("Seleccione mínimo 1 o más unidades");
@@ -134,49 +161,58 @@ namespace TiendaVerduras
             }
             else
             {
-                string stlines = File.ReadAllLines("userdata/user.dat").First();
 
-                var StringIDUsuario = u.DecodearString(stlines.Split(',')[2]);
+                if (cantidadvalida < stocko)
+                {
+                    string stlines = File.ReadAllLines("userdata/user.dat").First();
 
-                CarritoData cd = new CarritoData();
-                cd.IdProducto = valuex.Id;
-                cd.NombreProducto = valuex.NombreProducto;
-                cd.CantidadProducto = valuex.CantidadProducto;
-                cd.PrecioProducto = valuex.PrecioProducto;
-                cd.IdUsuario = Convert.ToInt32(StringIDUsuario);
-                cd.UnidadProducto = valuex.UnidadProducto;
-                NuevoCarrito = RevisarLista(cd, NuevoCarrito);
-                System.Windows.MessageBox.Show("Añadido al carrito");
+                    var StringIDUsuario = u.DecodearString(stlines.Split(',')[2]);
 
-             }
+                    CarritoData cd = new CarritoData();
+                    cd.IdProducto = valuex.Id;
+                    cd.NombreProducto = valuex.NombreProducto;
+                    cd.CantidadProducto = valuex.CantidadProducto;
+                    cd.PrecioProducto = valuex.PrecioProducto;
+                    cd.IdUsuario = Convert.ToInt32(StringIDUsuario);
+                    cd.UnidadProducto = valuex.UnidadProducto;
+                    cd.StockProducto = valuex.StockProducto;
+                    NuevoCarrito = RevisarLista(cd, NuevoCarrito);
+                    if (SePuedeAgregar)
+                    {
+                        Xceed.Wpf.Toolkit.MessageBox.Show("Se ha agregado un producto");
+
+                    }
+                    else
+                    {
+                        Xceed.Wpf.Toolkit.MessageBox.Show("La cantidad introducida supera el stock disponible");
+
+                    }
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("La cantidad introducida supera el stock disponible");
+
+                }
+
+
+            }
 
         }
 
-
-        private void ListaProductoR_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-            
-
-        }
-
-
-
-        //public void busca()
-        //{
-        //    foreach (sh)
-        //}
 
         private List<CarritoData> RevisarLista(CarritoData cd, List<CarritoData> Listas)
 
         {
             bool EsEncontrado = false;
+            bool SeSobrepasa = false;
 
             List<CarritoData> NuevaLista = new List<CarritoData>();
             if (Listas.Count == 0)
             {
+                SePuedeAgregar = true;
                 Listas.Add(cd);
                 return Listas;
+
 
             }
             else
@@ -186,24 +222,44 @@ namespace TiendaVerduras
                     if (cd.IdProducto == item.IdProducto)
                     {
                         item.CantidadProducto += cd.CantidadProducto;
-                        EsEncontrado = true;
-                        if (EsEncontrado)
+
+                        if (item.CantidadProducto >= cd.StockProducto)
                         {
-                            break;
+                            item.CantidadProducto -= cd.CantidadProducto;
+                            SeSobrepasa = true;
+                            
+
                         }
+                        else
+                        {
+                            EsEncontrado = true;
+                            if (EsEncontrado)
+                            {
+                                break;
+                            }
+                        }
+
                     }
 
+                }
+
+                if (SeSobrepasa)
+                {
+                    SePuedeAgregar = false;
+                    return Listas;
                 }
 
                 if (!EsEncontrado)
                 {
                     NuevaLista.Add(cd);
                     Listas = Listas.Concat(NuevaLista).ToList();
+                    SePuedeAgregar = true;
                     return Listas;
 
                 }
             }
 
+            SePuedeAgregar = true;
             return Listas;
 
         }
@@ -230,9 +286,6 @@ namespace TiendaVerduras
                     u.EncodearStrings(item.IdProducto.ToString()) + "," +
                     u.EncodearStrings(item.NombreProducto) + "," + u.EncodearStrings(item.IdUsuario.ToString()) + "," + u.EncodearStrings(item.PrecioProducto.ToString()) + "," + u.EncodearStrings(item.CantidadProducto.ToString()) + ","
                     + u.EncodearStrings(item.UnidadProducto)
-                    
-
-                    
                     );
             }
 
@@ -249,6 +302,14 @@ namespace TiendaVerduras
         {
             this.NavigationService.Navigate(new EditProductoScreen());
         }
+
+        private void btnVolver_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.GoBack();
+        }
+
+
+
     }
 
 

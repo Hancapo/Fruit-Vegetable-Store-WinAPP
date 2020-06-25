@@ -15,6 +15,7 @@
         <Label Content="Contraseña" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"/>
         <Button x:Name="btnIniciarSesion" VerticalAlignment="Center" HorizontalAlignment="Center" Height="30" Width="120" Margin="0,200,0,0" Click="btnIniciarSesion_Click">Iniciar Sesión</Button>
         <Button x:Name="btnCrear" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="200" Margin="0,125,0,0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF000C25" Click="btnCrear_Click">Crear cuenta</Button>
-        <Button x:Name="btnAgregarDatos" Content="Agregar Datos" HorizontalAlignment="Left" Margin="1060,78,0,0" VerticalAlignment="Top" Width="140" Click="btnAgregarDatos_Click"/>
+        <Button x:Name="btnAgregarDatos" Content="Agregar Datos Admin" HorizontalAlignment="Left" Margin="1060,78,0,0" VerticalAlignment="Top" Width="140" Click="btnAgregarDatos_Click"/>
+        <Button x:Name="btnAgregarUsuarios" Content="Agregar Datos Usuario" HorizontalAlignment="Left" Margin="1060,38,0,0" VerticalAlignment="Top" Width="140" Click="btnAgregarUsuarios_Click"/>
     </Grid>
 </Page>

@@ -33,14 +33,16 @@ namespace TiendaVerduras
 
         private void btnIniciarSesion_Click(object sender, RoutedEventArgs e)
         {
+            ValidacionLogin.ServiceClient serviciologin = new ValidacionLogin.ServiceClient();
+
             UsuarioData ud = new UsuarioData();
             ud.contrasenaUsuario = tbContrasena.Password;
             ud.nombreDeUsuario = tbUsuario.Text;
+            ud.tipoUsuario = serviciologin.TraerDato("TipoUsuario", "nom_user", ud.nombreDeUsuario, "dbo.Usuario" );
 
-            ValidacionLogin.ServiceClient serviciologin = new ValidacionLogin.ServiceClient();
             if (serviciologin.VerificarAcceso(ud.nombreDeUsuario, ud.contrasenaUsuario) == true)
             {
-                CreateLocalData(tbUsuario.Text, tbContrasena.Password, serviciologin.TraerDato("id","nom_usuario", tbUsuario.Text, "dbo.Usuario"));
+                CreateLocalData(tbUsuario.Text, tbContrasena.Password, serviciologin.TraerDato("id","nom_user", tbUsuario.Text, "dbo.Usuario"), ud.tipoUsuario);
 
                 MessageBox.Show("Inicio de sesión exitoso");
                 this.NavigationService.Navigate(new ShopTienda());
@@ -54,11 +56,11 @@ namespace TiendaVerduras
 
         private void btnAgregarDatos_Click(object sender, RoutedEventArgs e)
         {
-            tbContrasena.Password = "MMC7BPWmtVQD";
-            tbUsuario.Text = "cgilby4";
+            tbContrasena.Password = "soyadmin";
+            tbUsuario.Text = "vicho0202";
         }
 
-        private void CreateLocalData(string usr, string passw, string iduser)
+        private void CreateLocalData(string usr, string passw, string iduser, string tipouser)
         {
             Directory.CreateDirectory(Directory.GetCurrentDirectory() + "/userdata");
 
@@ -67,7 +69,8 @@ namespace TiendaVerduras
 
                 sb.Append(u.EncodearStrings(usr) + ",");
                 sb.Append(u.EncodearStrings(passw) + ",");
-                sb.Append(u.EncodearStrings(iduser));
+                sb.Append(u.EncodearStrings(iduser) + ","); 
+                sb.Append(u.EncodearStrings(tipouser));
                 File.WriteAllText(userdatafile, sb.ToString());
 
 
@@ -77,6 +80,12 @@ namespace TiendaVerduras
         {
             this.NavigationService.Navigate(new RegisterScreen());
 
+        }
+
+        private void btnAgregarUsuarios_Click(object sender, RoutedEventArgs e)
+        {
+            tbContrasena.Password = "q0H6Ukfp0";
+            tbUsuario.Text = "kstrattan0";
         }
     }
 }

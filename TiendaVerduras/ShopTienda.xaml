@@ -14,14 +14,15 @@
         <Button x:Name="btnCarrito" Content="Ir al carrito" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,25" Width="150" Height="50" Click="btnCarrito_Click"/>
         <Button x:Name="btnAddProducto" Content="Agregar producto" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,400,25" Width="150" Height="50" Click="btnAddProducto_Click"/>
         <Button x:Name="btnEditProducto" Content="Editar producto" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,-400,25" Width="150" Height="50" Click="btnEditProducto_Click"/>
+        <Button x:Name="btnVolver" Content="Volver" VerticalAlignment="Top" Width="60" Height="30" Margin="0,50,-1100,0" Click="btnVolver_Click"/>
         <Grid Margin="100">
-            <ListView x:Name="ListaProductoR" SelectionChanged="ListaProductoR_SelectionChanged" ScrollViewer.CanContentScroll="False">
+            <ListView x:Name="ListaProductoR" ScrollViewer.CanContentScroll="False">
                 <ListView.View>
                     <GridView x:Name="GridViewPrincipal">
                         <GridViewColumn Header="Foto producto" Width="120">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <StackPanel>
+                                    <StackPanel HorizontalAlignment="Center">
                                         <Image Source="{Binding FuenteImagen}" HorizontalAlignment="Center" Height="100" Width="100" Stretch="Uniform"></Image>
                                     </StackPanel>
                                 </DataTemplate>

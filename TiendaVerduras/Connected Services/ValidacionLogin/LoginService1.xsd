@@ -48,7 +48,7 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ExisteInstancia">
+  <xs:element name="ComprobarDato">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="referencia" nillable="true" type="xs:string" />
@@ -57,10 +57,10 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ExisteInstanciaResponse">
+  <xs:element name="ComprobarDatoResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="ExisteInstanciaResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="ComprobarDatoResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

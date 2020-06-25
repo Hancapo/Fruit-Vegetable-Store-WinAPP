@@ -24,11 +24,11 @@
   <wsdl:message name="IService_TraerDato_OutputMessage">
     <wsdl:part name="parameters" element="tns:TraerDatoResponse" />
   </wsdl:message>
-  <wsdl:message name="IService_ExisteInstancia_InputMessage">
-    <wsdl:part name="parameters" element="tns:ExisteInstancia" />
+  <wsdl:message name="IService_ComprobarDato_InputMessage">
+    <wsdl:part name="parameters" element="tns:ComprobarDato" />
   </wsdl:message>
-  <wsdl:message name="IService_ExisteInstancia_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ExisteInstanciaResponse" />
+  <wsdl:message name="IService_ComprobarDato_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ComprobarDatoResponse" />
   </wsdl:message>
   <wsdl:message name="IService_AgregarProducto_InputMessage">
     <wsdl:part name="parameters" element="tns:AgregarProducto" />
@@ -49,9 +49,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService/TraerDato" message="tns:IService_TraerDato_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/TraerDatoResponse" message="tns:IService_TraerDato_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="ExisteInstancia">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService/ExisteInstancia" message="tns:IService_ExisteInstancia_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService/ExisteInstanciaResponse" message="tns:IService_ExisteInstancia_OutputMessage" />
+    <wsdl:operation name="ComprobarDato">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/ComprobarDato" message="tns:IService_ComprobarDato_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/ComprobarDatoResponse" message="tns:IService_ComprobarDato_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AgregarProducto">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/AgregarProducto" message="tns:IService_AgregarProducto_InputMessage" />
@@ -87,8 +87,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ExisteInstancia">
-      <soap:operation soapAction="http://tempuri.org/IService/ExisteInstancia" style="document" />
+    <wsdl:operation name="ComprobarDato">
+      <soap:operation soapAction="http://tempuri.org/IService/ComprobarDato" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

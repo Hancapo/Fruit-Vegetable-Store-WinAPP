@@ -12,7 +12,8 @@ namespace TiendaVerduras
         public string correoUsuario { get; set; }
         public string contrasenaUsuario { get; set; }
         public string nombreDeUsuario { get; set; }
-        
+        public string tipoUsuario { get; set; }
+        public string runUsuario { get; set; }
         
     }
 }

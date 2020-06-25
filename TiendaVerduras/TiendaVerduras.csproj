@@ -77,13 +77,22 @@
     <Compile Include="CarritoScreen.xaml.cs">
       <DependentUpon>CarritoScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DireccionScreen.xaml.cs">
+      <DependentUpon>DireccionScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditProductoScreen.xaml.cs">
       <DependentUpon>EditProductoScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EnvioScreen.xaml.cs">
+      <DependentUpon>EnvioScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="LoginScreen.xaml.cs">
       <DependentUpon>LoginScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="MetodoPagoData.cs" />
+    <Compile Include="MetodoPagoScreen.xaml.cs">
+      <DependentUpon>MetodoPagoScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProductoData.cs" />
     <Compile Include="ProductoScreen.xaml.cs">
       <DependentUpon>ProductoScreen.xaml</DependentUpon>
@@ -100,7 +109,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DireccionScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EditProductoScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EnvioScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -125,6 +142,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MetodoPagoScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ProductoScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

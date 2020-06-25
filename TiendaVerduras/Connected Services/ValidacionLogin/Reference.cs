@@ -33,11 +33,11 @@ namespace TiendaVerduras.ValidacionLogin {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/TraerDato", ReplyAction="http://tempuri.org/IService/TraerDatoResponse")]
         System.Threading.Tasks.Task<string> TraerDatoAsync(string dato, string tipo, string valor, string tabla);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ExisteInstancia", ReplyAction="http://tempuri.org/IService/ExisteInstanciaResponse")]
-        bool ExisteInstancia(string referencia, string tabla, string tipo);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ComprobarDato", ReplyAction="http://tempuri.org/IService/ComprobarDatoResponse")]
+        bool ComprobarDato(string referencia, string tabla, string tipo);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ExisteInstancia", ReplyAction="http://tempuri.org/IService/ExisteInstanciaResponse")]
-        System.Threading.Tasks.Task<bool> ExisteInstanciaAsync(string referencia, string tabla, string tipo);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ComprobarDato", ReplyAction="http://tempuri.org/IService/ComprobarDatoResponse")]
+        System.Threading.Tasks.Task<bool> ComprobarDatoAsync(string referencia, string tabla, string tipo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AgregarProducto", ReplyAction="http://tempuri.org/IService/AgregarProductoResponse")]
         bool AgregarProducto(string nombre, string unidad, int stock, int precio);
@@ -97,12 +97,12 @@ namespace TiendaVerduras.ValidacionLogin {
             return base.Channel.TraerDatoAsync(dato, tipo, valor, tabla);
         }
         
-        public bool ExisteInstancia(string referencia, string tabla, string tipo) {
-            return base.Channel.ExisteInstancia(referencia, tabla, tipo);
+        public bool ComprobarDato(string referencia, string tabla, string tipo) {
+            return base.Channel.ComprobarDato(referencia, tabla, tipo);
         }
         
-        public System.Threading.Tasks.Task<bool> ExisteInstanciaAsync(string referencia, string tabla, string tipo) {
-            return base.Channel.ExisteInstanciaAsync(referencia, tabla, tipo);
+        public System.Threading.Tasks.Task<bool> ComprobarDatoAsync(string referencia, string tabla, string tipo) {
+            return base.Channel.ComprobarDatoAsync(referencia, tabla, tipo);
         }
         
         public bool AgregarProducto(string nombre, string unidad, int stock, int precio) {
