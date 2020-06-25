@@ -39,9 +39,6 @@ namespace TiendaVerduras
 
         }
 
-
-
-
         private void lbBienUser_Loaded(object sender, RoutedEventArgs e)
         {
             
@@ -63,12 +60,10 @@ namespace TiendaVerduras
                 EsAdmin = false;
             }
 
-
             if (!EsAdmin)
             {
                 btnAddProducto.Visibility = Visibility.Hidden;
                 btnEditProducto.Visibility = Visibility.Hidden;
-                
 
             }
 
@@ -81,7 +76,6 @@ namespace TiendaVerduras
         public void MostrarProductos()
         {
 
-
             sqlcon.Open();
 
             SqlCommand esecuelecom = new SqlCommand("SELECT * FROM dbo.Productos", sqlcon);
@@ -92,8 +86,6 @@ namespace TiendaVerduras
 
             ObservableCollection<ProductoData> listproducto = new ObservableCollection<ProductoData>();
             //List<ProductoData> listproducto = new List<ProductoData>();
-
-
 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -111,23 +103,13 @@ namespace TiendaVerduras
                     
                 };
 
-                
                 listproducto.Add(dataproductos);
 
             }
             sqlcon.Close();
             ListaProductoR.ItemsSource = listproducto;
-
-             
-
-
-
         }
 
-        public void VerificarCantidadLogica()
-        {
-            
-        }
 
         private void SelecCantidad_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
@@ -293,6 +275,23 @@ namespace TiendaVerduras
 
         }
 
+        private void ArchivoEditarProducto(int id, string nomprod, int precio, int stock, string uniprod)
+        {
+            StringBuilder sb = new StringBuilder();
+                sb.AppendLine(
+                    
+                    u.EncodearStrings(id.ToString()) + "," +
+                    u.EncodearStrings(nomprod) + "," +
+                    u.EncodearStrings(precio.ToString()) + "," + 
+                    u.EncodearStrings(stock.ToString()) + "," +
+                    u.EncodearStrings(uniprod)
+                    
+                    );
+
+
+            File.WriteAllText("userdata/producto.dat", sb.ToString());
+        }
+
         private void btnAddProducto_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new ProductoScreen());
@@ -300,6 +299,8 @@ namespace TiendaVerduras
 
         private void btnEditProducto_Click(object sender, RoutedEventArgs e)
         {
+            var cosa = (ListaProductoR.SelectedItem as ProductoData);
+            
             this.NavigationService.Navigate(new EditProductoScreen());
         }
 
