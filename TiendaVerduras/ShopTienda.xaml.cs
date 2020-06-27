@@ -24,9 +24,9 @@ namespace TiendaVerduras
     /// </summary>
     public partial class ShopTienda : Page
     {
-        public static int test;
+        public int test { get; set; }
         List<CarritoData> NuevoCarrito = new List<CarritoData>();
-        Utilidades u = new Utilidades();
+        readonly Utilidades u = new Utilidades();
         public bool EsAdmin { get; set; }
         public bool SePuedeAgregar { get; set; }
 
@@ -35,14 +35,15 @@ namespace TiendaVerduras
             InitializeComponent();
             CargarUsuario();
             MostrarProductos();
-            MetodoPagoData mpd = new MetodoPagoData();
+            _ = new MetodoPagoData();
+
 
         }
 
         private void lbBienUser_Loaded(object sender, RoutedEventArgs e)
         {
             
-            lbBienUser.Content = "Hola " + CargarUsuario();
+            lbBienUser.Content = "Bienvenido " + CargarUsuario();
         }
 
         private string CargarUsuario()
@@ -62,9 +63,14 @@ namespace TiendaVerduras
 
             if (!EsAdmin)
             {
-                btnAddProducto.Visibility = Visibility.Hidden;
-                btnEditProducto.Visibility = Visibility.Hidden;
+                spShop.Children.Remove(btnAddProducto);
+                spShop.Children.Remove(btnEditProducto);
 
+            }
+
+            if (EsAdmin)
+            {
+                spShop.Children.Remove(btnCarrito);
             }
 
             return correoline;
@@ -277,6 +283,7 @@ namespace TiendaVerduras
 
         private void ArchivoEditarProducto(int id, string nomprod, int precio, int stock, string uniprod)
         {
+
             StringBuilder sb = new StringBuilder();
                 sb.AppendLine(
                     
@@ -301,9 +308,20 @@ namespace TiendaVerduras
         {
             var cosa = (ListaProductoR.SelectedItem as ProductoData);
 
-            ArchivoEditarProducto(cosa.Id, cosa.NombreProducto, cosa.PrecioProducto, cosa.StockProducto, cosa.UnidadProducto);
-            
-            this.NavigationService.Navigate(new EditProductoScreen());
+            if (ListaProductoR.SelectedItem == null)
+            {
+                System.Windows.MessageBox.Show("No se ha seleccionado ningún producto", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            else
+            {
+                ArchivoEditarProducto(cosa.Id, cosa.NombreProducto, cosa.PrecioProducto, cosa.StockProducto, cosa.UnidadProducto);
+
+                this.NavigationService.Navigate(new EditProductoScreen());
+
+
+            }
+
+
         }
 
         private void btnVolver_Click(object sender, RoutedEventArgs e)
@@ -332,6 +350,11 @@ namespace TiendaVerduras
                 var loadd = (sender as IntegerUpDown).Visibility = Visibility.Hidden;
                 gvcCantidad.Header = "";
             }
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            ListaProductoR.SelectedItem = null;
         }
     }
 

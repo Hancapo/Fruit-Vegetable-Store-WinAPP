@@ -21,7 +21,7 @@
             <StackPanel Width="300">
                 <TextBox x:Name="tbUsuario" Margin="10" materialDesign:HintAssist.Hint="Usuario" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                 <PasswordBox x:Name="tbContrasena" Margin="10" materialDesign:HintAssist.Hint="Contraseña" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
-                <Button x:Name="btnIniciarSesion" Margin="30" Content="Iniciar Sesión" Width="150" Click="btnIniciarSesion_Click"/>
+                <Button x:Name="btnIniciarSesion" Margin="30" Content="Iniciar Sesión" Width="150" Click="btnIniciarSesion_Click" />
                 <Button x:Name="btnCrear" Margin="20" Width="120" Content="Crear cuenta" Style="{StaticResource MaterialDesignOutlinedButton}" Click="btnCrear_Click"/>
             </StackPanel>
         </StackPanel>

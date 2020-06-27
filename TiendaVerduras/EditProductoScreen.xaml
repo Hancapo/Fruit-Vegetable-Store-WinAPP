@@ -17,7 +17,18 @@
       Title="EditProductoScreen">
 
     <Grid>
-        <Label Content="Edición de producto" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="40"/>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="tbNombre" materialDesign:HintAssist.Hint="Nombre" Margin="20" Width="150" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="tbStock" materialDesign:HintAssist.Hint="Stock" Margin="20" Width="150" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="tbPrecio" materialDesign:HintAssist.Hint="Precio" Margin="20" Width="150" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="tbUnidad" materialDesign:HintAssist.Hint="Unidad" Margin="20" Width="150" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="50">
+                <Button x:Name="btnVolver" Content="Volver" Margin="20" Click="btnVolver_Click"/>
+                <Button x:Name="btnGuardarCambios" Content="Guardar cambios" Margin="20" Click="btnGuardarCambios_Click"/>
+            </StackPanel>
+        </StackPanel>
         
     </Grid>
 </Page>

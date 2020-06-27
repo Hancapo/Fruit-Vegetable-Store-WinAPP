@@ -44,6 +44,12 @@ namespace TiendaVerduras.ValidacionLogin {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AgregarProducto", ReplyAction="http://tempuri.org/IService/AgregarProductoResponse")]
         System.Threading.Tasks.Task<bool> AgregarProductoAsync(string nombre, string unidad, int stock, int precio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ActualizarDatoProductos", ReplyAction="http://tempuri.org/IService/ActualizarDatoProductosResponse")]
+        bool ActualizarDatoProductos(string nombre, int precio, int stock, string unidad, int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ActualizarDatoProductos", ReplyAction="http://tempuri.org/IService/ActualizarDatoProductosResponse")]
+        System.Threading.Tasks.Task<bool> ActualizarDatoProductosAsync(string nombre, int precio, int stock, string unidad, int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -111,6 +117,14 @@ namespace TiendaVerduras.ValidacionLogin {
         
         public System.Threading.Tasks.Task<bool> AgregarProductoAsync(string nombre, string unidad, int stock, int precio) {
             return base.Channel.AgregarProductoAsync(nombre, unidad, stock, precio);
+        }
+        
+        public bool ActualizarDatoProductos(string nombre, int precio, int stock, string unidad, int id) {
+            return base.Channel.ActualizarDatoProductos(nombre, precio, stock, unidad, id);
+        }
+        
+        public System.Threading.Tasks.Task<bool> ActualizarDatoProductosAsync(string nombre, int precio, int stock, string unidad, int id) {
+            return base.Channel.ActualizarDatoProductosAsync(nombre, precio, stock, unidad, id);
         }
     }
 }

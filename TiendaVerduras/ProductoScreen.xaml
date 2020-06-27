@@ -3,25 +3,36 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal"
+      TextOptions.TextRenderingMode="Auto"
+      Background="{DynamicResource MaterialDesignPaper}"
+      FontFamily="{DynamicResource MaterialDesignFont}"
       xmlns:local="clr-namespace:TiendaVerduras"
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="1280"
       Title="ProductoScreen">
 
     <Grid>
-        <Label Content="Agregar producto" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="50"/>
-        <Button x:Name="btnVolver" Content="Volver" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Width="120" Margin="0,0,-1120,0" Click="btnVolver_Click"/>
-        <Image x:Name="ImImagen" Height="400" Width="400" VerticalAlignment="Stretch" HorizontalAlignment="Left" Margin="100,0,0,0"/>
-        <Label Content="Nombre del producto" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Margin="0,-400,-600,0"/>
-        <TextBox x:Name="tbNombre" Width="250" Height="30" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,220,300"/>
-        <Label Content="Precio" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Margin="0,-200,-600,0"/>
-        <TextBox x:Name="tbPrecio" Width="250" Height="30" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,220,100"/>
-        <Label Content="Unidad" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Margin="0,0,-600,0"/>
-        <TextBox x:Name="tbUnidad" Width="250" Height="30" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,220,-100"/>
-        <Label Content="Stock Inicial" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Margin="0,0,-600,-200"/>
-        <TextBox x:Name="tbStock" Width="250" Height="30" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,220,-300"/>
-        <Button x:Name="btnSelecImagen" Content="Seleccionar Imagen" Width="150" Height="40" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,260,100" Click="btnSelecImagen_Click"/>
-        <Button x:Name="btnAgregar" Width="200" Height="40" Content="Agregar producto" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,260,25" Click="btnAgregar_Click"/>
+        <Label Content="Agregar producto" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="50" Margin="30"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                <Image x:Name="ImImagen" HorizontalAlignment="Center" Width="400" Height="400" Source="dummy-placeholder-image-400x400.jpg" Margin="50"/>
+                <Button x:Name="btnSelecImagen" Content="Seleccionar Imagen" Width="Auto" VerticalAlignment="Bottom" HorizontalAlignment="Center" Click="btnSelecImagen_Click" Margin="20"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBox x:Name="tbNombre" materialDesign:HintAssist.Hint="Nombre" Width="200" Margin="10" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="tbPrecio" Width="200" materialDesign:HintAssist.Hint="Precio" Margin="10" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="tbUnidad" Width="200" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" materialDesign:HintAssist.Hint="Unidad" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="tbStock" Width="200" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" materialDesign:HintAssist.Hint="Stock" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <Button Content="Agregar producto" Width="Auto" VerticalAlignment="Bottom" HorizontalAlignment="Center" Click="btnSelecImagen_Click" Margin="20"/>
+                <Button x:Name="btnVolver" Content="Volver" Click="btnVolver_Click" Width="Auto" Margin="20"/>
 
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,300,0,0"/>
+        </StackPanel>
     </Grid>
 </Page>

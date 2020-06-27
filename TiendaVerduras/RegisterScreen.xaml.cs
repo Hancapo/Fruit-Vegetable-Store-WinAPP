@@ -31,7 +31,7 @@ namespace TiendaVerduras
             ValidacionLogin.ServiceClient servicioregister = new ValidacionLogin.ServiceClient();
 
 
-            if (servicioregister.CrearUsuario(tbCorreo.Text, tbPassword.Password, tbUsuario.Text))
+            if (servicioregister.CrearUsuario(tbCorreo.Text, tbPassword.Password, tbUsuario.Text, "user", tbRUN.Text))
             {
                 MessageBox.Show("Cuenta creada exitosamente");
                 this.NavigationService.GoBack();
@@ -50,5 +50,15 @@ namespace TiendaVerduras
             this.NavigationService.GoBack();
         }
 
+        private void tbRUN_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string run_ = tbRUN.Text;
+            if (run_.Length == 9)
+            {
+                run_ = run_.Insert(8,"-");
+            }
+
+            tbRUN.Text = run_;
+        }
     }
 }

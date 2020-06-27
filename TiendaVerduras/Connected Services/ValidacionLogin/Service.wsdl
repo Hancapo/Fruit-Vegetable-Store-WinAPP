@@ -36,6 +36,12 @@
   <wsdl:message name="IService_AgregarProducto_OutputMessage">
     <wsdl:part name="parameters" element="tns:AgregarProductoResponse" />
   </wsdl:message>
+  <wsdl:message name="IService_ActualizarDatoProductos_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarDatoProductos" />
+  </wsdl:message>
+  <wsdl:message name="IService_ActualizarDatoProductos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarDatoProductosResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService">
     <wsdl:operation name="VerificarAcceso">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/VerificarAcceso" message="tns:IService_VerificarAcceso_InputMessage" />
@@ -56,6 +62,10 @@
     <wsdl:operation name="AgregarProducto">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/AgregarProducto" message="tns:IService_AgregarProducto_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/AgregarProductoResponse" message="tns:IService_AgregarProducto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarDatoProductos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/ActualizarDatoProductos" message="tns:IService_ActualizarDatoProductos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/ActualizarDatoProductosResponse" message="tns:IService_ActualizarDatoProductos_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService" type="tns:IService">
@@ -98,6 +108,15 @@
     </wsdl:operation>
     <wsdl:operation name="AgregarProducto">
       <soap:operation soapAction="http://tempuri.org/IService/AgregarProducto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarDatoProductos">
+      <soap:operation soapAction="http://tempuri.org/IService/ActualizarDatoProductos" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
