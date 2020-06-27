@@ -71,7 +71,7 @@ namespace TiendaVerduras
             
         }
 
-        SqlConnection sqlcon = new SqlConnection(@"Data Source=(localdb)\servertest;Initial Catalog=Tienda;Integrated Security=true;");
+        SqlConnection sqlcon = new SqlConnection(@"Data Source=(localdb)\tiendaduoc;Initial Catalog=Tienda;Integrated Security=true;");
 
         public void MostrarProductos()
         {
@@ -161,12 +161,12 @@ namespace TiendaVerduras
                     NuevoCarrito = RevisarLista(cd, NuevoCarrito);
                     if (SePuedeAgregar)
                     {
-                        Xceed.Wpf.Toolkit.MessageBox.Show("Se ha agregado un producto");
+                        System.Windows.MessageBox.Show("Se ha agregado un producto");
 
                     }
                     else
                     {
-                        Xceed.Wpf.Toolkit.MessageBox.Show("La cantidad introducida supera el stock disponible");
+                        System.Windows.MessageBox.Show("La cantidad introducida supera el stock disponible");
 
                     }
                 }
@@ -300,6 +300,8 @@ namespace TiendaVerduras
         private void btnEditProducto_Click(object sender, RoutedEventArgs e)
         {
             var cosa = (ListaProductoR.SelectedItem as ProductoData);
+
+            ArchivoEditarProducto(cosa.Id, cosa.NombreProducto, cosa.PrecioProducto, cosa.StockProducto, cosa.UnidadProducto);
             
             this.NavigationService.Navigate(new EditProductoScreen());
         }

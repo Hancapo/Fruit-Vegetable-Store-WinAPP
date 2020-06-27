@@ -1,19 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.IO;
-using System.Security.Permissions;
 
 namespace TiendaVerduras
 {
@@ -24,7 +13,7 @@ namespace TiendaVerduras
     {
         string userdatafile = "userdata/user.dat";
         Utilidades u = new Utilidades();
-
+        
         public LoginScreen()
         {
             InitializeComponent();
@@ -33,32 +22,53 @@ namespace TiendaVerduras
 
         private void btnIniciarSesion_Click(object sender, RoutedEventArgs e)
         {
-            ValidacionLogin.ServiceClient serviciologin = new ValidacionLogin.ServiceClient();
+            int acceder = 0;
 
-            UsuarioData ud = new UsuarioData();
-            ud.contrasenaUsuario = tbContrasena.Password;
-            ud.nombreDeUsuario = tbUsuario.Text;
-            ud.tipoUsuario = serviciologin.TraerDato("TipoUsuario", "nom_user", ud.nombreDeUsuario, "dbo.Usuario" );
-
-            if (serviciologin.VerificarAcceso(ud.nombreDeUsuario, ud.contrasenaUsuario) == true)
+            if (String.IsNullOrEmpty(tbUsuario.Text))
             {
-                CreateLocalData(tbUsuario.Text, tbContrasena.Password, serviciologin.TraerDato("id","nom_user", tbUsuario.Text, "dbo.Usuario"), ud.tipoUsuario);
+                MessageBox.Show("Introduzca un usuario.", "Advertencia");
+            }
+            else
+            {
+                acceder ++;
+            }
 
-                MessageBox.Show("Inicio de sesión exitoso");
-                this.NavigationService.Navigate(new ShopTienda());
+            if (String.IsNullOrEmpty(tbContrasena.Password))
+            {
+                MessageBox.Show("Introduzca la contraseña.", "Advertencia");
+
 
             }
             else
             {
-                MessageBox.Show("No se pudo iniciar sesión");
+                acceder++;
+
             }
+
+            if (acceder == 2)
+            {
+                ValidacionLogin.ServiceClient serviciologin = new ValidacionLogin.ServiceClient();
+
+                UsuarioData ud = new UsuarioData();
+                ud.nombreDeUsuario = tbUsuario.Text;
+                ud.contrasenaUsuario = tbContrasena.Password;
+
+                if (serviciologin.VerificarAcceso(ud.nombreDeUsuario, ud.contrasenaUsuario) == false)
+                {
+                    MessageBox.Show("No se ha podido iniciar sesión, verifique los datos e inténtelo nuevamente.");
+                }
+                else
+                {
+                    CreateLocalData(ud.nombreDeUsuario, ud.contrasenaUsuario, serviciologin.TraerDato("id", "nom_user", ud.nombreDeUsuario, "dbo.Usuario"), serviciologin.TraerDato("TipoUsuario", "nom_user", ud.nombreDeUsuario, "dbo.Usuario"));
+                    this.NavigationService.Navigate(new ShopTienda());
+                }
+
+
+            }
+
+
         }
 
-        private void btnAgregarDatos_Click(object sender, RoutedEventArgs e)
-        {
-            tbContrasena.Password = "soyadmin";
-            tbUsuario.Text = "vicho0202";
-        }
 
         private void CreateLocalData(string usr, string passw, string iduser, string tipouser)
         {
@@ -82,10 +92,18 @@ namespace TiendaVerduras
 
         }
 
-        private void btnAgregarUsuarios_Click(object sender, RoutedEventArgs e)
+
+        private void btnAdmin_Click(object sender, RoutedEventArgs e)
         {
-            tbContrasena.Password = "q0H6Ukfp0";
-            tbUsuario.Text = "kstrattan0";
+            tbContrasena.Password = "soyadmin1";
+            tbUsuario.Text = "vicho0202";
         }
+
+        private void btnUsuario_Click(object sender, RoutedEventArgs e)
+        {
+            tbContrasena.Password = "IrbmmUy3oalb";
+            tbUsuario.Text = "bmundell0";
+        }
+
     }
 }

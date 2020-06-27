@@ -3,16 +3,24 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+               TextElement.FontWeight="Regular"
+         TextElement.FontSize="13"
+         TextOptions.TextFormattingMode="Ideal"
+         TextOptions.TextRenderingMode="Auto"
+          Background="{DynamicResource MaterialDesignPaper}"
+          FontFamily="{DynamicResource MaterialDesignFont}"
       xmlns:local="clr-namespace:TiendaVerduras"
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="1280"
       Title="CarritoScreen" KeepAlive="True" Loaded="Page_Loaded">
 
     <Grid>
-        <Label x:Name="lbCarrito" Content="Carrito" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="100"/>
-        <Button x:Name="btnVolver" Content="Volver" HorizontalAlignment="Center" VerticalAlignment="Top" Height="30" Width="60" Margin="0,150,-900,0" Click="btnVolver_Click"/>
+        <Button x:Name="btnVolver" Content="Volver" HorizontalAlignment="Center" VerticalAlignment="Top" Height="30" Width="80" Margin="-100,125,0,0" Click="btnVolver_Click"/>
+        <Button x:Name="btnSiguiente" Content="Siguiente" HorizontalAlignment="Center" VerticalAlignment="Top" Height="30" Width="100" Margin="100,125,0,0" Click="btnSiguiente_Click"/>
         <Label Content="Total:" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="30" Margin="0,0,300,30"/>
-        <TextBlock x:Name="lblTotal" Text="3" VerticalAlignment="Bottom" FontSize="30" Margin="0,0,52,35" Background="{x:Null}" HorizontalAlignment="Right" TextAlignment="Justify" Width="243"/>
+        <TextBlock x:Name="lblTotal" Text="0" VerticalAlignment="Bottom" FontSize="30" Margin="0,0,52,35" Background="{x:Null}" HorizontalAlignment="Right" TextAlignment="Justify" Width="243"/>
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="400" Width="960" Margin="0,100,0,0">
             <ListView x:Name="ListCarritoR" ScrollViewer.CanContentScroll="False">
                 <ListView.View>
@@ -21,13 +29,13 @@
                         <GridViewColumn Header="Cantidad" Width="120" DisplayMemberBinding="{Binding CantidadProducto}"/>
                         <GridViewColumn Header="Unidad" Width="120" DisplayMemberBinding="{Binding UnidadProducto}"/>
                         <GridViewColumn Header="Precio" Width="120" DisplayMemberBinding="{Binding PrecioProducto}"/>
-                        <GridViewColumn Header="Subtotal" Width="120" DisplayMemberBinding="{Binding SubtotalProducto}"/>
-                        <GridViewColumn Header="Subtotal + IVA" Width="120" DisplayMemberBinding="{Binding SubtotalProductoIVA}"/>
+                        <GridViewColumn Header="Precio total" Width="120" DisplayMemberBinding="{Binding SubtotalProducto}"/>
 
 
                     </GridView>
                 </ListView.View>
             </ListView>
         </Grid>
+        <Image Source="paso1.png" Stretch="Uniform" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,30,0,0" Height="60" RenderOptions.BitmapScalingMode="HighQuality"/>
     </Grid>
 </Page>

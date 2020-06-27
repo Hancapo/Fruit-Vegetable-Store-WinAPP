@@ -26,7 +26,7 @@ namespace TiendaVerduras
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
             ValidacionLogin.ServiceClient servicioregister = new ValidacionLogin.ServiceClient();
 
@@ -49,5 +49,6 @@ namespace TiendaVerduras
         {
             this.NavigationService.GoBack();
         }
+
     }
 }

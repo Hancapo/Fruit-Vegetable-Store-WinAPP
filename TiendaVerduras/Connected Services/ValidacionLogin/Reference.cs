@@ -22,10 +22,10 @@ namespace TiendaVerduras.ValidacionLogin {
         System.Threading.Tasks.Task<bool> VerificarAccesoAsync(string nombreusuario, string pass);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CrearUsuario", ReplyAction="http://tempuri.org/IService/CrearUsuarioResponse")]
-        bool CrearUsuario(string email, string pass, string user);
+        bool CrearUsuario(string email, string pass, string user, string TipoU, string run);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CrearUsuario", ReplyAction="http://tempuri.org/IService/CrearUsuarioResponse")]
-        System.Threading.Tasks.Task<bool> CrearUsuarioAsync(string email, string pass, string user);
+        System.Threading.Tasks.Task<bool> CrearUsuarioAsync(string email, string pass, string user, string TipoU, string run);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/TraerDato", ReplyAction="http://tempuri.org/IService/TraerDatoResponse")]
         string TraerDato(string dato, string tipo, string valor, string tabla);
@@ -81,12 +81,12 @@ namespace TiendaVerduras.ValidacionLogin {
             return base.Channel.VerificarAccesoAsync(nombreusuario, pass);
         }
         
-        public bool CrearUsuario(string email, string pass, string user) {
-            return base.Channel.CrearUsuario(email, pass, user);
+        public bool CrearUsuario(string email, string pass, string user, string TipoU, string run) {
+            return base.Channel.CrearUsuario(email, pass, user, TipoU, run);
         }
         
-        public System.Threading.Tasks.Task<bool> CrearUsuarioAsync(string email, string pass, string user) {
-            return base.Channel.CrearUsuarioAsync(email, pass, user);
+        public System.Threading.Tasks.Task<bool> CrearUsuarioAsync(string email, string pass, string user, string TipoU, string run) {
+            return base.Channel.CrearUsuarioAsync(email, pass, user, TipoU, run);
         }
         
         public string TraerDato(string dato, string tipo, string valor, string tabla) {

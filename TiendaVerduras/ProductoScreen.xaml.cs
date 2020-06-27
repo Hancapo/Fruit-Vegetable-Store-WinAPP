@@ -50,6 +50,7 @@ namespace TiendaVerduras
         {
 
             AgregarP();
+            Directory.CreateDirectory("resources");
             File.Copy(filenamu, "resources/" + s.TraerDato("id", "nom_prod", tbNombre.Text , "dbo.Productos") + System.IO.Path.GetExtension(filenamu));
 
             this.NavigationService.Navigate(new ShopTienda());

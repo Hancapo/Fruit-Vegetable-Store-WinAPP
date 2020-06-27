@@ -66,8 +66,8 @@ namespace TiendaVerduras
                     
                     int STProductoIVa = Convert.ToInt32(CalculoA + CalculoA * 0.19);
 
-                    cd.SubtotalProductoIVA = STProductoIVa;
-                cd.UnidadProducto = u.DecodearString(LineasDivid[5]);
+                    cd.SubtotalProductoIVA = CalculoA;
+                    cd.UnidadProducto = u.DecodearString(LineasDivid[5]);
 
                     ListaCarrito.Add(cd);
 
@@ -90,5 +90,9 @@ namespace TiendaVerduras
             return Preciototal;
         }
 
+        private void btnSiguiente_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new DireccionScreen());
+        }
     }
 }

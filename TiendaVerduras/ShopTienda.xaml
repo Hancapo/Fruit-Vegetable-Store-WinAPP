@@ -3,20 +3,30 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+           TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+      Background="{DynamicResource MaterialDesignPaper}"
+      FontFamily="{DynamicResource MaterialDesignFont}"
       xmlns:local="clr-namespace:TiendaVerduras"
       xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit" 
+      
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="1280"
       Title="ShopTienda" KeepAlive="True">
 
+
     <Grid>
-        <Label x:Name="lbBienUser" Content="Bievenido" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="20" Loaded="lbBienUser_Loaded"/>
+        <Label x:Name="lbBienUser" Content="Bievenido" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Loaded="lbBienUser_Loaded"/>
         <Button x:Name="btnCarrito" Content="Ir al carrito" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,25" Width="150" Height="50" Click="btnCarrito_Click"/>
         <Button x:Name="btnAddProducto" Content="Agregar producto" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,400,25" Width="150" Height="50" Click="btnAddProducto_Click" Loaded="btnAddProducto_Loaded"/>
         <Button x:Name="btnEditProducto" Content="Editar producto" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,-400,25" Width="150" Height="50" Click="btnEditProducto_Click"/>
-        <Button x:Name="btnVolver" Content="Volver" VerticalAlignment="Top" Width="60" Height="30" Margin="0,50,-1100,0" Click="btnVolver_Click"/>
-        <Grid Margin="100">
-            <ListView x:Name="ListaProductoR" ScrollViewer.CanContentScroll="False">
+        <Button x:Name="btnVolver" Content="Cerrar Sesión" VerticalAlignment="Top" Width="120" Height="30" Margin="0,50,-1100,0" Click="btnVolver_Click"/>
+        <Grid Margin="120">
+            <ListView x:Name="ListaProductoR" ScrollViewer.CanContentScroll="False" Height="Auto">
                 <ListView.View>
                     <GridView x:Name="GridViewPrincipal">
                         <GridViewColumn Header="Foto producto" Width="120">
@@ -28,7 +38,7 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Nombre producto" Width="120" DisplayMemberBinding="{Binding NombreProducto}"/>
+                        <GridViewColumn Header="Nombre producto" Width="140" DisplayMemberBinding="{Binding NombreProducto}"/>
                         <GridViewColumn Header="Precio" Width="120" DisplayMemberBinding="{Binding PrecioProducto}"/>
                         <GridViewColumn Header="Stock" Width="120" DisplayMemberBinding="{Binding StockProducto}"/>
                         <GridViewColumn Header="Unidad" Width="120" DisplayMemberBinding="{Binding UnidadProducto}"/>
@@ -46,15 +56,9 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-
-
-
                     </GridView>
-
                 </ListView.View>
             </ListView>
         </Grid>
     </Grid>
-    
-    
 </Page>
