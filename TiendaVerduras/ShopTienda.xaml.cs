@@ -14,7 +14,6 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
 using System.Xml.Schema;
-using Xceed.Wpf.AvalonDock.Layout;
 using Xceed.Wpf.Toolkit;
 
 namespace TiendaVerduras
