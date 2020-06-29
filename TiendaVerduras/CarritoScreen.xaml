@@ -17,25 +17,35 @@
       Title="CarritoScreen" KeepAlive="True" Loaded="Page_Loaded">
 
     <Grid>
-        <Button x:Name="btnVolver" Content="Volver" HorizontalAlignment="Center" VerticalAlignment="Top" Height="30" Width="80" Margin="-100,125,0,0" Click="btnVolver_Click"/>
-        <Button x:Name="btnSiguiente" Content="Siguiente" HorizontalAlignment="Center" VerticalAlignment="Top" Height="30" Width="100" Margin="100,125,0,0" Click="btnSiguiente_Click"/>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,100,0,0">
+                <Button x:Name="btnVolver" Content="Volver" Height="30" Width="80" Click="btnVolver_Click" Margin="20"/>
+                <Button x:Name="btnSiguiente" Content="Siguiente" Height="30" Width="100" Click="btnSiguiente_Click" Margin="20"/>
+                <Button x:Name="btnVaciar" Content="Vaciar carrito" Margin="20" VerticalAlignment="Center" Click="btnVaciar_Click"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="400" Width="960">
+                    <ListView x:Name="ListCarritoR" ScrollViewer.CanContentScroll="False" Background="#FF1F1F1F">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Producto" Width="120" DisplayMemberBinding="{Binding NombreProducto}"/>
+                                <GridViewColumn Header="Cantidad" Width="120" DisplayMemberBinding="{Binding CantidadProducto}"/>
+                                <GridViewColumn Header="Unidad" Width="120" DisplayMemberBinding="{Binding UnidadProducto}"/>
+                                <GridViewColumn Header="Precio" Width="120" DisplayMemberBinding="{Binding PrecioProducto}"/>
+                                <GridViewColumn Header="Precio total" Width="120" DisplayMemberBinding="{Binding SubtotalProducto}"/>
+
+
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+
+            </StackPanel>
+        </StackPanel>
+
         <Label Content="Total:" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="30" Margin="0,0,300,30"/>
-        <TextBlock x:Name="lblTotal" Text="0" VerticalAlignment="Bottom" FontSize="30" Margin="0,0,52,35" Background="{x:Null}" HorizontalAlignment="Right" TextAlignment="Justify" Width="243"/>
-        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="400" Width="960" Margin="0,100,0,0">
-            <ListView x:Name="ListCarritoR" ScrollViewer.CanContentScroll="False">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Producto" Width="120" DisplayMemberBinding="{Binding NombreProducto}"/>
-                        <GridViewColumn Header="Cantidad" Width="120" DisplayMemberBinding="{Binding CantidadProducto}"/>
-                        <GridViewColumn Header="Unidad" Width="120" DisplayMemberBinding="{Binding UnidadProducto}"/>
-                        <GridViewColumn Header="Precio" Width="120" DisplayMemberBinding="{Binding PrecioProducto}"/>
-                        <GridViewColumn Header="Precio total" Width="120" DisplayMemberBinding="{Binding SubtotalProducto}"/>
-
-
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </Grid>
+        <TextBlock x:Name="lblTotal" Text="$0" VerticalAlignment="Bottom" FontSize="30" Margin="0,0,52,35" Background="{x:Null}" HorizontalAlignment="Right" TextAlignment="Justify" Width="243"/>
         <Image Source="paso1.png" Stretch="Uniform" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,30,0,0" Height="60" RenderOptions.BitmapScalingMode="HighQuality"/>
     </Grid>
 </Page>

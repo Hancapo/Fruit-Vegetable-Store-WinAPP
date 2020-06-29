@@ -18,8 +18,86 @@
 
     <Grid>
         <Image Source="paso2.png" Stretch="Uniform" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,30,0,0" Height="60" RenderOptions.BitmapScalingMode="HighQuality"/>
-        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="500" Width="900">
-            <TextBox materialDesign:HintAssist.Hint="Dirreción" Width="150" Height="40" />
+        <Grid>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,80,0,0">
+                <Button x:Name="btnVolver" Content="Volver" Margin="20" Click="btnVolver_Click"/>
+                <Button x:Name="btnSiguiente" Content="Siguiente" Margin="20" Click="Button_Click"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Margin="0,150,0,0">
+                <StackPanel>
+                    <TextBox x:Name="tbCalle" materialDesign:HintAssist.Hint="Calle" Width="200" Height="Auto" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                    <TextBox x:Name="tbNDomic" materialDesign:HintAssist.Hint="N° Domicilio" Width="200" Height="Auto" Margin="20" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                    <ComboBox x:Name="cbComuna" Margin="20" materialDesign:HintAssist.Hint="Comuna" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Width="200">
+                        <ComboBoxItem>Cerrillos</ComboBoxItem>
+                        <ComboBoxItem>La Reina</ComboBoxItem>
+                        <ComboBoxItem>Pudahuel</ComboBoxItem>
+                        <ComboBoxItem>Cerro Navia</ComboBoxItem>
+                        <ComboBoxItem>Las Condes</ComboBoxItem>
+                        <ComboBoxItem>Quilicura</ComboBoxItem>
+                        <ComboBoxItem>Conchalí</ComboBoxItem>
+                        <ComboBoxItem>Lo Barnechea</ComboBoxItem>
+                        <ComboBoxItem>Quinta Normal</ComboBoxItem>
+                        <ComboBoxItem>El Bosque</ComboBoxItem>
+                        <ComboBoxItem>Lo Espejo</ComboBoxItem>
+                        <ComboBoxItem>Recoleta</ComboBoxItem>
+                        <ComboBoxItem>Estación Central</ComboBoxItem>
+                        <ComboBoxItem>Lo Prado</ComboBoxItem>
+                        <ComboBoxItem>Renca</ComboBoxItem>
+                        <ComboBoxItem>Huechuraba</ComboBoxItem>
+                        <ComboBoxItem>Macul</ComboBoxItem>
+                        <ComboBoxItem>San Miguel</ComboBoxItem>
+                        <ComboBoxItem>Independencia</ComboBoxItem>
+                        <ComboBoxItem>Maipú</ComboBoxItem>
+                        <ComboBoxItem>San Joaquín</ComboBoxItem>
+                        <ComboBoxItem>La Cisterna</ComboBoxItem>
+                        <ComboBoxItem>Ñuñoa</ComboBoxItem>
+                        <ComboBoxItem>San Ramón</ComboBoxItem>
+                        <ComboBoxItem>La Florida</ComboBoxItem>
+                        <ComboBoxItem>Pedro Aguirre Cerda</ComboBoxItem>
+                        <ComboBoxItem>Santiago Centro</ComboBoxItem>
+                        <ComboBoxItem>La Pintana</ComboBoxItem>
+                        <ComboBoxItem>Peñalolén</ComboBoxItem>
+                        <ComboBoxItem>Vitacura</ComboBoxItem>
+                        <ComboBoxItem>La Granja</ComboBoxItem>
+                        <ComboBoxItem>Providencia</ComboBoxItem>
+                        <ComboBoxItem>Colina</ComboBoxItem>
+                        <ComboBoxItem>Peñaflor</ComboBoxItem>
+                        <ComboBoxItem>San Bernardo</ComboBoxItem>
+                        <ComboBoxItem>Lampa</ComboBoxItem>
+                        <ComboBoxItem>Pirque</ComboBoxItem>
+                        <ComboBoxItem>San José de Maipo</ComboBoxItem>
+                        <ComboBoxItem>Padre Hurtado</ComboBoxItem>
+                        <ComboBoxItem>Puente Alto</ComboBoxItem>
+                    </ComboBox>
+                    <TextBox x:Name="tbCP" materialDesign:HintAssist.Hint="Código postal" Width="200" Height="Auto" Margin="20" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                    <ComboBox x:Name="cbCiudad" Margin="20" materialDesign:HintAssist.Hint="Ciudad" Style="{StaticResource MaterialDesignFloatingHintComboBox}" SelectedIndex="0" IsReadOnly="True">
+                        <ComboBoxItem>Santiago</ComboBoxItem>
+                    </ComboBox>
+                    <ComboBox x:Name="cbPais" Margin="20" materialDesign:HintAssist.Hint="País" Style="{StaticResource MaterialDesignFloatingHintComboBox}" SelectedIndex="0" IsReadOnly="True">
+                        <ComboBoxItem>
+                            Chile
+                        </ComboBoxItem>
+                    </ComboBox>
+                    
+                    <Button x:Name="btnAgregarDomicilio" Content="Agregar domicilio" Margin="10" Click="btnAgregarDomicilio_Click"/>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Domicilios" HorizontalAlignment="Center" Margin="10"/>
+                    <ListView x:Name="ListaDomicilios">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn DisplayMemberBinding="{Binding IdUsuario}" Width="Auto"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding Calle}" Width="200"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding NumeroDomicilio}" Width="Auto"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding CodigoPostal}" Width="100"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding Comuna}" Width="100"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding Ciudad}" Width="Auto"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding Pais}" Width="Auto"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </StackPanel>
+            </StackPanel>
         </Grid>
     </Grid>
 </Page>

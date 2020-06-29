@@ -88,6 +88,7 @@
     <Compile Include="DireccionScreen.xaml.cs">
       <DependentUpon>DireccionScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DomicilioData.cs" />
     <Compile Include="EditProductoScreen.xaml.cs">
       <DependentUpon>EditProductoScreen.xaml</DependentUpon>
     </Compile>

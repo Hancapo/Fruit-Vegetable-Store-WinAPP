@@ -50,6 +50,12 @@ namespace TiendaVerduras.ValidacionLogin {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ActualizarDatoProductos", ReplyAction="http://tempuri.org/IService/ActualizarDatoProductosResponse")]
         System.Threading.Tasks.Task<bool> ActualizarDatoProductosAsync(string nombre, int precio, int stock, string unidad, int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AgregarDomicilio", ReplyAction="http://tempuri.org/IService/AgregarDomicilioResponse")]
+        bool AgregarDomicilio(string calle, string ciudad, string comuna, int cp, int iduser, int numerodomi, string pais);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AgregarDomicilio", ReplyAction="http://tempuri.org/IService/AgregarDomicilioResponse")]
+        System.Threading.Tasks.Task<bool> AgregarDomicilioAsync(string calle, string ciudad, string comuna, int cp, int iduser, int numerodomi, string pais);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -125,6 +131,14 @@ namespace TiendaVerduras.ValidacionLogin {
         
         public System.Threading.Tasks.Task<bool> ActualizarDatoProductosAsync(string nombre, int precio, int stock, string unidad, int id) {
             return base.Channel.ActualizarDatoProductosAsync(nombre, precio, stock, unidad, id);
+        }
+        
+        public bool AgregarDomicilio(string calle, string ciudad, string comuna, int cp, int iduser, int numerodomi, string pais) {
+            return base.Channel.AgregarDomicilio(calle, ciudad, comuna, cp, iduser, numerodomi, pais);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AgregarDomicilioAsync(string calle, string ciudad, string comuna, int cp, int iduser, int numerodomi, string pais) {
+            return base.Channel.AgregarDomicilioAsync(calle, ciudad, comuna, cp, iduser, numerodomi, pais);
         }
     }
 }

@@ -33,7 +33,7 @@ namespace TiendaVerduras
 
         private void btnVolver_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.GoBack();
+            this.NavigationService.Navigate(new ShopTienda());
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -92,7 +92,23 @@ namespace TiendaVerduras
 
         private void btnSiguiente_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new DireccionScreen());
+            if (ListCarritoR.Items.Count == 0)
+            {
+                MessageBox.Show("Por favor, agrega como mínimo un producto para continuar con la compra", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                this.NavigationService.Navigate(new DireccionScreen());
+
+            }
+        }
+
+        private void btnVaciar_Click(object sender, RoutedEventArgs e)
+        {
+            ListCarritoR.ItemsSource = null;
+            File.Delete("userdata/carrito.dat");
+            int cero = 0;
+            lblTotal.Text = cero.ToString("C", CultureInfo.GetCultureInfo("es-CL"));
         }
     }
 }

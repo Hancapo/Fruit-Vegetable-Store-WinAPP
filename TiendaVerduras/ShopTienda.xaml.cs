@@ -326,7 +326,7 @@ namespace TiendaVerduras
 
         private void btnVolver_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.GoBack();
+            this.NavigationService.Navigate(new LoginScreen());
         }
 
         private void btnAddProducto_Loaded(object sender, RoutedEventArgs e)

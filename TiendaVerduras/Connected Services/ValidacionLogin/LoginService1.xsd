@@ -101,4 +101,24 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="AgregarDomicilio">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="calle" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ciudad" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="comuna" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="cp" type="xs:int" />
+        <xs:element minOccurs="0" name="iduser" type="xs:int" />
+        <xs:element minOccurs="0" name="numerodomi" type="xs:int" />
+        <xs:element minOccurs="0" name="pais" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AgregarDomicilioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AgregarDomicilioResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

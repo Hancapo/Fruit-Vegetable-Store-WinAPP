@@ -58,15 +58,19 @@ namespace TiendaVerduras
 
         private void AgregarP()
         {
-            if (s.AgregarProducto(tbNombre.Text, tbUnidad.Text, Convert.ToInt32(tbStock.Text), Convert.ToInt32(tbPrecio.Text)))
+
+            try
             {
-                MessageBox.Show("Producto agregado exitosamente");
+                if (s.AgregarProducto(tbNombre.Text, tbUnidad.Text, Convert.ToInt32(tbStock.Text), Convert.ToInt32(tbPrecio.Text)))
+                {
+                    MessageBox.Show("Producto agregado exitosamente");
 
 
+                }
             }
-            else
+            catch (Exception)
             {
-                MessageBox.Show("No se ha podido agregar el producto");
+                MessageBox.Show("No se ha podido agregar el producto, verifique los datos e inténtelo nuevamente.");
 
             }
         }
