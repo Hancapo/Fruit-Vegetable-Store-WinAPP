@@ -18,7 +18,6 @@ namespace TiendaVerduras
         {
             InitializeComponent();
         }
-        
 
         private void btnIniciarSesion_Click(object sender, RoutedEventArgs e)
         {
@@ -59,7 +58,7 @@ namespace TiendaVerduras
                 }
                 else
                 {
-                    CreateLocalData(ud.nombreDeUsuario, ud.contrasenaUsuario, serviciologin.TraerDato("id", "nom_user", ud.nombreDeUsuario, "dbo.Usuario"), serviciologin.TraerDato("TipoUsuario", "nom_user", ud.nombreDeUsuario, "dbo.Usuario"));
+                    CreateLocalData(ud.nombreDeUsuario, ud.contrasenaUsuario, serviciologin.TraerDato("id", "nom_user", ud.nombreDeUsuario, "dbo.Usuario"), serviciologin.TraerDato("TipoUsu", "nom_user", ud.nombreDeUsuario, "dbo.Usuario"));
                     this.NavigationService.Navigate(new ShopTienda());
                 }
 

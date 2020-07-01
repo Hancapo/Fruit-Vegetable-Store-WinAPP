@@ -11,6 +11,7 @@
          TextOptions.TextRenderingMode="Auto"
           Background="{DynamicResource MaterialDesignPaper}"
           FontFamily="{DynamicResource MaterialDesignFont}"
+            xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit" 
       xmlns:local="clr-namespace:TiendaVerduras"
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="1280"
@@ -34,8 +35,6 @@
                                 <GridViewColumn Header="Unidad" Width="120" DisplayMemberBinding="{Binding UnidadProducto}"/>
                                 <GridViewColumn Header="Precio" Width="120" DisplayMemberBinding="{Binding PrecioProducto}"/>
                                 <GridViewColumn Header="Precio total" Width="120" DisplayMemberBinding="{Binding SubtotalProducto}"/>
-
-
                             </GridView>
                         </ListView.View>
                     </ListView>

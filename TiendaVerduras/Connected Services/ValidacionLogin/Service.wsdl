@@ -48,6 +48,30 @@
   <wsdl:message name="IService_AgregarDomicilio_OutputMessage">
     <wsdl:part name="parameters" element="tns:AgregarDomicilioResponse" />
   </wsdl:message>
+  <wsdl:message name="IService_BorrarPorId_InputMessage">
+    <wsdl:part name="parameters" element="tns:BorrarPorId" />
+  </wsdl:message>
+  <wsdl:message name="IService_BorrarPorId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BorrarPorIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_TraerIdDomicilio_InputMessage">
+    <wsdl:part name="parameters" element="tns:TraerIdDomicilio" />
+  </wsdl:message>
+  <wsdl:message name="IService_TraerIdDomicilio_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TraerIdDomicilioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_AgregarDetalleCompra_InputMessage">
+    <wsdl:part name="parameters" element="tns:AgregarDetalleCompra" />
+  </wsdl:message>
+  <wsdl:message name="IService_AgregarDetalleCompra_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AgregarDetalleCompraResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_ActualizarStock_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarStock" />
+  </wsdl:message>
+  <wsdl:message name="IService_ActualizarStock_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarStockResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService">
     <wsdl:operation name="VerificarAcceso">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/VerificarAcceso" message="tns:IService_VerificarAcceso_InputMessage" />
@@ -76,6 +100,22 @@
     <wsdl:operation name="AgregarDomicilio">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/AgregarDomicilio" message="tns:IService_AgregarDomicilio_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/AgregarDomicilioResponse" message="tns:IService_AgregarDomicilio_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BorrarPorId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/BorrarPorId" message="tns:IService_BorrarPorId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/BorrarPorIdResponse" message="tns:IService_BorrarPorId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TraerIdDomicilio">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/TraerIdDomicilio" message="tns:IService_TraerIdDomicilio_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/TraerIdDomicilioResponse" message="tns:IService_TraerIdDomicilio_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AgregarDetalleCompra">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/AgregarDetalleCompra" message="tns:IService_AgregarDetalleCompra_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/AgregarDetalleCompraResponse" message="tns:IService_AgregarDetalleCompra_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarStock">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/ActualizarStock" message="tns:IService_ActualizarStock_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/ActualizarStockResponse" message="tns:IService_ActualizarStock_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService" type="tns:IService">
@@ -136,6 +176,42 @@
     </wsdl:operation>
     <wsdl:operation name="AgregarDomicilio">
       <soap:operation soapAction="http://tempuri.org/IService/AgregarDomicilio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BorrarPorId">
+      <soap:operation soapAction="http://tempuri.org/IService/BorrarPorId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TraerIdDomicilio">
+      <soap:operation soapAction="http://tempuri.org/IService/TraerIdDomicilio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AgregarDetalleCompra">
+      <soap:operation soapAction="http://tempuri.org/IService/AgregarDetalleCompra" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarStock">
+      <soap:operation soapAction="http://tempuri.org/IService/ActualizarStock" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

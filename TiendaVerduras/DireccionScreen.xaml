@@ -86,7 +86,6 @@
                     <ListView x:Name="ListaDomicilios">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn DisplayMemberBinding="{Binding IdUsuario}" Width="Auto"/>
                                 <GridViewColumn DisplayMemberBinding="{Binding Calle}" Width="200"/>
                                 <GridViewColumn DisplayMemberBinding="{Binding NumeroDomicilio}" Width="Auto"/>
                                 <GridViewColumn DisplayMemberBinding="{Binding CodigoPostal}" Width="100"/>

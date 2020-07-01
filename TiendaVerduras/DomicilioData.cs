@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace TiendaVerduras
 {
-    class DomicilioData
+    public class DomicilioData
     {
+        public int IdDom { get; set; }
         public string Calle { get; set; }
         public int NumeroDomicilio { get; set; }
         public string Pais { get; set; }

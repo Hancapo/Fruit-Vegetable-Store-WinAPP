@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TiendaVerduras"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1280" Loaded="Window_Loaded" Background="White" Foreground="{x:Null}">
+        Title="Tienda Frudurasu" Height="720" Width="1280" Loaded="Window_Loaded" Background="White" Foreground="{x:Null}" Closed="Window_Closed" Closing="Window_Closing">
     <Grid>
         <Frame x:Name="Principal" NavigationUIVisibility="Hidden">
         </Frame>

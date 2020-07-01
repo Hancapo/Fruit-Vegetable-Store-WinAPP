@@ -18,9 +18,9 @@
 
     <Grid>
         <Image Source="paso4.png" Stretch="Uniform" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,30,0,0" Height="60" RenderOptions.BitmapScalingMode="HighQuality"/>
-        <StackPanel>
-            <StackPanel>
-                
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Vertical">
+                <Button x:Name="btnDetallescompra" Content="Guardar detalles de compra" Click="btnDetallescompra_Click"/>
             </StackPanel>
         </StackPanel>
 

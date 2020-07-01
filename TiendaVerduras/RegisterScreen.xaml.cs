@@ -20,7 +20,9 @@ namespace TiendaVerduras
     /// </summary>
     public partial class RegisterScreen : Page
     {
-        
+
+        public int validacion { get; set; } = 0;
+
         public RegisterScreen()
         {
             InitializeComponent();
@@ -28,20 +30,79 @@ namespace TiendaVerduras
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
+
+
             ValidacionLogin.ServiceClient servicioregister = new ValidacionLogin.ServiceClient();
 
 
-            if (servicioregister.CrearUsuario(tbCorreo.Text, tbPassword.Password, tbUsuario.Text, "user", tbRUN.Text))
+            if (String.IsNullOrEmpty(tbCorreo.Text))
             {
-                MessageBox.Show("Cuenta creada exitosamente");
-                this.NavigationService.GoBack();
+                MessageBox.Show("Introduzca un correo electrónico", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
 
             }
             else
             {
-                MessageBox.Show("El correo que ha ingresado ya tiene un usuario asignado.");
+                validacion++;
+            }
+
+            if (String.IsNullOrEmpty(tbPassword.Password))
+            {
+                MessageBox.Show("Introduzca una contraseña", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
 
             }
+            else
+            {
+                validacion++;
+            }
+
+            if (String.IsNullOrEmpty(tbRUN.Text))
+            {
+                MessageBox.Show("Introduzca un RUN", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+            }
+            else
+            {
+                validacion++;
+            }
+
+            if (String.IsNullOrEmpty(tbTelefono.Text))
+            {
+                MessageBox.Show("Introduzca un teléfono", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+            }
+            else
+            {
+                validacion++;
+            }
+
+            if (String.IsNullOrEmpty(tbUsuario.Text))
+            {
+                MessageBox.Show("Introduzca un nombre de usuario", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+            }
+            else
+            {
+                validacion++;
+            }
+
+            if (validacion == 5)
+            {
+                if (servicioregister.CrearUsuario(tbCorreo.Text, tbPassword.Password, tbUsuario.Text, "user", tbRUN.Text, tbTelefono.Text))
+                {
+                    MessageBox.Show("Cuenta creada exitosamente", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                    this.NavigationService.GoBack();
+
+                }
+                else
+                {
+                    MessageBox.Show("El correo que ha ingresado ya tiene un usuario asignado.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                }
+            }
+
+
+
+
             
         }
 
@@ -60,5 +121,7 @@ namespace TiendaVerduras
 
             tbRUN.Text = run_;
         }
+
+
     }
 }

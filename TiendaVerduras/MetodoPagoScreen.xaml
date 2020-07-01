@@ -28,7 +28,7 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="20">
-                    <RadioButton x:Name="rbEfectivo" Content="Efectivo" GroupName="pago"/>
+                    <RadioButton x:Name="rbEfectivo" Content="Efectivo" GroupName="pago" Checked="rbEfectivo_Checked"/>
                     <materialDesign:PackIcon Kind="Cash" Margin="10"/>
                 </StackPanel>
 
@@ -83,7 +83,11 @@
             </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-            <Button x:Name="btnPagarEfectivo" Content="Pagar" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button x:Name="btnPagarEfectivo" Content="Pagar" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnPagarEfectivo_Click"/>
+        </StackPanel>
+        <StackPanel>
+            <Label x:Name="lbTotalAPagar" Content="Total a pagar: " HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
+
         </StackPanel>
     </Grid>
     

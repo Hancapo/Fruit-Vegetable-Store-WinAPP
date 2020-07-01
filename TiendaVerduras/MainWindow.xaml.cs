@@ -1,18 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceModel.Channels;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace TiendaVerduras
 {
@@ -29,6 +17,30 @@ namespace TiendaVerduras
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Principal.NavigationService.Navigate(new LoginScreen());
+            if (File.Exists("userdata/user.dat"))
+            {
+                File.Delete("userdata/user.dat");
+            }
+            if (File.Exists("userdata/producto.dat"))
+            {
+                File.Delete("userdata/producto.dat");
+
+            }
+            if (File.Exists("userdata/carrito.dat"))
+            {
+                File.Delete("userdata/carrito.dat");
+
+            }
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
         }
     }
 }

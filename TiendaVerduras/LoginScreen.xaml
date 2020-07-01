@@ -26,8 +26,8 @@
             </StackPanel>
         </StackPanel>
         <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Top" Margin="50">
-            <Button x:Name="btnAdmin" Content="Cuenta Admin" Margin="20" Click="btnAdmin_Click"/>
-            <Button x:Name="btnUsuario" Content="Cuenta Usuario" Margin="20" Click="btnUsuario_Click"/>
+            <Button x:Name="btnAdmin" Content="Cuenta Admin" Margin="20" Click="btnAdmin_Click" Visibility="Hidden"/>
+            <Button x:Name="btnUsuario" Content="Cuenta Usuario" Margin="20" Click="btnUsuario_Click" Visibility="Hidden"/>
         </StackPanel>
     </Grid>
 </Page>

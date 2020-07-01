@@ -9,7 +9,7 @@ using Xceed.Wpf.Toolkit;
 
 namespace TiendaVerduras
 {
-    class ProductoData
+    public class ProductoData
     {
         public int Id { get; set; }
         public string NombreProducto { get; set; }

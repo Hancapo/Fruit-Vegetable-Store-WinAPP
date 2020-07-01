@@ -5,16 +5,15 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
-using System.Management.Instrumentation;
-using System.ServiceModel.Channels;
-using System.ServiceModel.Dispatcher;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Media;
+using System.Windows.Forms;
 using System.Xml.Schema;
+using TiendaVerduras.ValidacionLogin;
 using Xceed.Wpf.Toolkit;
+using Button = System.Windows.Controls.Button;
+using MessageBox = System.Windows.MessageBox;
 
 namespace TiendaVerduras
 {
@@ -23,21 +22,35 @@ namespace TiendaVerduras
     /// </summary>
     public partial class ShopTienda : Page
     {
+        ServiceClient s = new ServiceClient();
+
         public int test { get; set; }
-        List<CarritoData> NuevoCarrito = new List<CarritoData>();
+        public static List<ProductoData> NuevoProducto { get; set; } = new List<ProductoData>();
+        public static List<CarritoData> NuevoCarrito { get; set; } = new List<CarritoData>();
         readonly Utilidades u = new Utilidades();
         public bool EsAdmin { get; set; }
         public bool SePuedeAgregar { get; set; }
+        
 
         public ShopTienda()
         {
             InitializeComponent();
             CargarUsuario();
-            MostrarProductos();
-            _ = new MetodoPagoData();
 
 
         }
+
+
+        public List<ProductoData> ListaProducto()
+        {
+            return NuevoProducto;
+        }
+        public List<CarritoData> ListaCarrito()
+        {
+            return NuevoCarrito;
+        }
+
+
 
         private void lbBienUser_Loaded(object sender, RoutedEventArgs e)
         {
@@ -64,6 +77,7 @@ namespace TiendaVerduras
             {
                 spShop.Children.Remove(btnAddProducto);
                 spShop.Children.Remove(btnEditProducto);
+                spShop.Children.Remove(btnBorrarProducto);
 
             }
 
@@ -78,7 +92,7 @@ namespace TiendaVerduras
 
         SqlConnection sqlcon = new SqlConnection(@"Data Source=(localdb)\tiendaduoc;Initial Catalog=Tienda;Integrated Security=true;");
 
-        public void MostrarProductos()
+        public List<ProductoData> MostrarProductos()
         {
 
             sqlcon.Open();
@@ -86,11 +100,9 @@ namespace TiendaVerduras
             SqlCommand esecuelecom = new SqlCommand("SELECT * FROM dbo.Productos", sqlcon);
             SqlDataAdapter sda = new SqlDataAdapter(esecuelecom);
             DataTable dt = new DataTable();
-
             sda.Fill(dt);
 
-            ObservableCollection<ProductoData> listproducto = new ObservableCollection<ProductoData>();
-            //List<ProductoData> listproducto = new List<ProductoData>();
+            List<ProductoData> Fixeo = new List<ProductoData>();
 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -104,15 +116,15 @@ namespace TiendaVerduras
                     FuenteImagen = Directory.GetCurrentDirectory() + "/resources/" + dt.Rows[i]["Id"] + ".jpg",
                     CantidadProducto = Convert.ToInt32(new IntegerUpDown().Value),
                     UnidadProducto = dt.Rows[i]["unidad"].ToString()
-                    
-                    
-                };
 
-                listproducto.Add(dataproductos);
+
+                };
+                Fixeo.Add(dataproductos);
 
             }
             sqlcon.Close();
-            ListaProductoR.ItemsSource = listproducto;
+            return Fixeo;
+
         }
 
 
@@ -143,7 +155,7 @@ namespace TiendaVerduras
 
             if (cantidadvalida == 0)
             {
-                System.Windows.MessageBox.Show("Seleccione mínimo 1 o más unidades");
+                MessageBox.Show("Seleccione mínimo 1 o más unidades", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
 
             }
             else
@@ -163,21 +175,22 @@ namespace TiendaVerduras
                     cd.IdUsuario = Convert.ToInt32(StringIDUsuario);
                     cd.UnidadProducto = valuex.UnidadProducto;
                     cd.StockProducto = valuex.StockProducto;
+                    cd.SubtotalProducto = valuex.CantidadProducto * valuex.PrecioProducto;
                     NuevoCarrito = RevisarLista(cd, NuevoCarrito);
                     if (SePuedeAgregar)
                     {
-                        System.Windows.MessageBox.Show("Se ha agregado un producto");
+                        MessageBox.Show("Se ha agregado un producto");
 
                     }
                     else
                     {
-                        System.Windows.MessageBox.Show("La cantidad introducida supera el stock disponible");
+                        MessageBox.Show("La cantidad introducida supera el stock disponible");
 
                     }
                 }
                 else
                 {
-                    System.Windows.MessageBox.Show("La cantidad introducida supera el stock disponible");
+                    MessageBox.Show("La cantidad introducida supera el stock disponible");
 
                 }
 
@@ -187,13 +200,14 @@ namespace TiendaVerduras
         }
 
 
-        private List<CarritoData> RevisarLista(CarritoData cd, List<CarritoData> Listas)
+        public List<CarritoData> RevisarLista(CarritoData cd, List<CarritoData> Listas)
 
         {
             bool EsEncontrado = false;
             bool SeSobrepasa = false;
 
             List<CarritoData> NuevaLista = new List<CarritoData>();
+
             if (Listas.Count == 0)
             {
                 SePuedeAgregar = true;
@@ -209,10 +223,13 @@ namespace TiendaVerduras
                     if (cd.IdProducto == item.IdProducto)
                     {
                         item.CantidadProducto += cd.CantidadProducto;
+                        item.SubtotalProducto += cd.SubtotalProducto;
 
                         if (item.CantidadProducto >= cd.StockProducto)
                         {
                             item.CantidadProducto -= cd.CantidadProducto;
+                            item.SubtotalProducto -= cd.SubtotalProducto;
+
                             SeSobrepasa = true;
                             
 
@@ -251,34 +268,14 @@ namespace TiendaVerduras
 
         }
 
-        private void btnCarrito_Click(object sender, RoutedEventArgs e)
+        public void btnCarrito_Click(object sender, RoutedEventArgs e)
         {
 
             this.NavigationService.Navigate(new CarritoScreen());
-            ArchivoCarrito(NuevoCarrito);
+            //ArchivoCarrito(NuevoCarrito);
 
         }
 
-
-        private void ArchivoCarrito(List<CarritoData> ItemsCarrito)
-        {
-            StringBuilder sb = new StringBuilder();
-
-            
-
-            foreach (var item in ItemsCarrito)
-            {
-                sb.AppendLine(
-                    
-                    u.EncodearStrings(item.IdProducto.ToString()) + "," +
-                    u.EncodearStrings(item.NombreProducto) + "," + u.EncodearStrings(item.IdUsuario.ToString()) + "," + u.EncodearStrings(item.PrecioProducto.ToString()) + "," + u.EncodearStrings(item.CantidadProducto.ToString()) + ","
-                    + u.EncodearStrings(item.UnidadProducto)
-                    );
-            }
-
-            File.WriteAllText("userdata/carrito.dat", sb.ToString());
-
-        }
 
         private void ArchivoEditarProducto(int id, string nomprod, int precio, int stock, string uniprod)
         {
@@ -314,7 +311,6 @@ namespace TiendaVerduras
             else
             {
                 ArchivoEditarProducto(cosa.Id, cosa.NombreProducto, cosa.PrecioProducto, cosa.StockProducto, cosa.UnidadProducto);
-
                 this.NavigationService.Navigate(new EditProductoScreen());
 
 
@@ -325,7 +321,21 @@ namespace TiendaVerduras
 
         private void btnVolver_Click(object sender, RoutedEventArgs e)
         {
+            NuevoCarrito.Clear();
+
             this.NavigationService.Navigate(new LoginScreen());
+            File.Delete("userdata/user.dat");
+
+            if (File.Exists("userdata/producto.dat"))
+            {
+                File.Delete("userdata/producto.dat");
+            }
+
+            if (File.Exists("userdata/carrito.dat"))
+            {
+                File.Delete("userdata/carrito.dat");
+            }
+
         }
 
         private void btnAddProducto_Loaded(object sender, RoutedEventArgs e)
@@ -354,6 +364,36 @@ namespace TiendaVerduras
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             ListaProductoR.SelectedItem = null;
+            ListaProductoR.ItemsSource = null;
+            ListaProductoR.ItemsSource = MostrarProductos(); 
+
+
+        }
+
+        private void btnBorrarProducto_Click(object sender, RoutedEventArgs e)
+        {
+            if (ListaProductoR.SelectedItem == null)
+            {
+                MessageBox.Show("No se ha seleccionado ningún producto", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+            }
+            else
+            {
+                var itemseleccionado = (ListaProductoR.SelectedItem as ProductoData);
+                s.TraerDato("id", "nom_prod", itemseleccionado.NombreProducto, "dbo.Productos");
+
+                string nombrep = itemseleccionado.NombreProducto;
+
+                if (MessageBox.Show("¿Desea eliminar el producto " + nombrep + "?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    s.BorrarPorId(Convert.ToInt32(s.TraerDato("id", "nom_prod", nombrep, "dbo.Productos")), "dbo.Productos");
+                    MessageBox.Show("El producto " + nombrep + " se ha eliminado exitosamente.", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                    this.NavigationService.Navigate(new ShopTienda());
+
+                }
+
+
+            }
         }
     }
 

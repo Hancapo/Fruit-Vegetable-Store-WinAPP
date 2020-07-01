@@ -15,16 +15,17 @@
       xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit" 
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="1280"
-      Title="ShopTienda" KeepAlive="True" Loaded="Page_Loaded">
+      Title="ShopTienda" Loaded="Page_Loaded">
     <Grid>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <StackPanel x:Name="spShop" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center">
                 <Button x:Name="btnCarrito" Margin="20" Content="Ir al carrito" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="150" Height="50" Click="btnCarrito_Click"/>
                 <Button x:Name="btnAddProducto" Margin="20"  Content="Agregar producto" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="150" Height="50" Click="btnAddProducto_Click" Loaded="btnAddProducto_Loaded"/>
                 <Button x:Name="btnEditProducto" Margin="20"  Content="Editar producto" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="150" Height="50" Click="btnEditProducto_Click"/>
+                <Button x:Name="btnBorrarProducto" Margin="20" Content="Eliminar producto" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="150" Height="50" Click="btnBorrarProducto_Click"/>
             </StackPanel>
         </StackPanel>
-        <Label x:Name="lbBienUser" Content="Bievenido" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Loaded="lbBienUser_Loaded"/>
+        <Label x:Name="lbBienUser" Content="Bienvenido" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Loaded="lbBienUser_Loaded"/>
 
         <Button x:Name="btnVolver" Content="Cerrar Sesión" VerticalAlignment="Top" Width="120" Height="30" Margin="0,50,-1100,0" Click="btnVolver_Click"/>
         <Grid Margin="120">
@@ -47,7 +48,7 @@
                         <GridViewColumn x:Name="gvcCantidad" Header="Cantidad" Width="120">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate x:Name="DataTemplateNumerico">
-                                    <wpfTool:IntegerUpDown x:Name="SelecCantidad" Value="{Binding CantidadProducto}" Increment="1" Maximum="1000" Minimum="0" ValueChanged="SelecCantidad_ValueChanged" AutomationProperties.Name="SelectCantidad2" TextAlignment="Center" Loaded="SelecCantidad_Loaded" />
+                                    <wpfTool:IntegerUpDown x:Name="SelecCantidad" Value="{Binding CantidadProducto}" Increment="1" Maximum="1000" Minimum="0" ValueChanged="SelecCantidad_ValueChanged" AutomationProperties.Name="SelectCantidad2" TextAlignment="Center" Loaded="SelecCantidad_Loaded" Background="{x:Null}" Foreground="#FFC9C9C9" BorderBrush="{x:Null}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

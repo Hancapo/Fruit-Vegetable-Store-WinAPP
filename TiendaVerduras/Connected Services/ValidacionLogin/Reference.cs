@@ -22,10 +22,10 @@ namespace TiendaVerduras.ValidacionLogin {
         System.Threading.Tasks.Task<bool> VerificarAccesoAsync(string nombreusuario, string pass);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CrearUsuario", ReplyAction="http://tempuri.org/IService/CrearUsuarioResponse")]
-        bool CrearUsuario(string email, string pass, string user, string TipoU, string run);
+        bool CrearUsuario(string email, string pass, string user, string TipoU, string run, string telefono);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CrearUsuario", ReplyAction="http://tempuri.org/IService/CrearUsuarioResponse")]
-        System.Threading.Tasks.Task<bool> CrearUsuarioAsync(string email, string pass, string user, string TipoU, string run);
+        System.Threading.Tasks.Task<bool> CrearUsuarioAsync(string email, string pass, string user, string TipoU, string run, string telefono);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/TraerDato", ReplyAction="http://tempuri.org/IService/TraerDatoResponse")]
         string TraerDato(string dato, string tipo, string valor, string tabla);
@@ -56,6 +56,30 @@ namespace TiendaVerduras.ValidacionLogin {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AgregarDomicilio", ReplyAction="http://tempuri.org/IService/AgregarDomicilioResponse")]
         System.Threading.Tasks.Task<bool> AgregarDomicilioAsync(string calle, string ciudad, string comuna, int cp, int iduser, int numerodomi, string pais);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/BorrarPorId", ReplyAction="http://tempuri.org/IService/BorrarPorIdResponse")]
+        bool BorrarPorId(int id, string tabla);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/BorrarPorId", ReplyAction="http://tempuri.org/IService/BorrarPorIdResponse")]
+        System.Threading.Tasks.Task<bool> BorrarPorIdAsync(int id, string tabla);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/TraerIdDomicilio", ReplyAction="http://tempuri.org/IService/TraerIdDomicilioResponse")]
+        int TraerIdDomicilio(string calle, int numerodom, int cp);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/TraerIdDomicilio", ReplyAction="http://tempuri.org/IService/TraerIdDomicilioResponse")]
+        System.Threading.Tasks.Task<int> TraerIdDomicilioAsync(string calle, int numerodom, int cp);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AgregarDetalleCompra", ReplyAction="http://tempuri.org/IService/AgregarDetalleCompraResponse")]
+        bool AgregarDetalleCompra(int cantidad, int total, int iddireccion, int idusuario, int metodopago);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AgregarDetalleCompra", ReplyAction="http://tempuri.org/IService/AgregarDetalleCompraResponse")]
+        System.Threading.Tasks.Task<bool> AgregarDetalleCompraAsync(int cantidad, int total, int iddireccion, int idusuario, int metodopago);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ActualizarStock", ReplyAction="http://tempuri.org/IService/ActualizarStockResponse")]
+        bool ActualizarStock(int cantidad, string nombreprod);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ActualizarStock", ReplyAction="http://tempuri.org/IService/ActualizarStockResponse")]
+        System.Threading.Tasks.Task<bool> ActualizarStockAsync(int cantidad, string nombreprod);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -93,12 +117,12 @@ namespace TiendaVerduras.ValidacionLogin {
             return base.Channel.VerificarAccesoAsync(nombreusuario, pass);
         }
         
-        public bool CrearUsuario(string email, string pass, string user, string TipoU, string run) {
-            return base.Channel.CrearUsuario(email, pass, user, TipoU, run);
+        public bool CrearUsuario(string email, string pass, string user, string TipoU, string run, string telefono) {
+            return base.Channel.CrearUsuario(email, pass, user, TipoU, run, telefono);
         }
         
-        public System.Threading.Tasks.Task<bool> CrearUsuarioAsync(string email, string pass, string user, string TipoU, string run) {
-            return base.Channel.CrearUsuarioAsync(email, pass, user, TipoU, run);
+        public System.Threading.Tasks.Task<bool> CrearUsuarioAsync(string email, string pass, string user, string TipoU, string run, string telefono) {
+            return base.Channel.CrearUsuarioAsync(email, pass, user, TipoU, run, telefono);
         }
         
         public string TraerDato(string dato, string tipo, string valor, string tabla) {
@@ -139,6 +163,38 @@ namespace TiendaVerduras.ValidacionLogin {
         
         public System.Threading.Tasks.Task<bool> AgregarDomicilioAsync(string calle, string ciudad, string comuna, int cp, int iduser, int numerodomi, string pais) {
             return base.Channel.AgregarDomicilioAsync(calle, ciudad, comuna, cp, iduser, numerodomi, pais);
+        }
+        
+        public bool BorrarPorId(int id, string tabla) {
+            return base.Channel.BorrarPorId(id, tabla);
+        }
+        
+        public System.Threading.Tasks.Task<bool> BorrarPorIdAsync(int id, string tabla) {
+            return base.Channel.BorrarPorIdAsync(id, tabla);
+        }
+        
+        public int TraerIdDomicilio(string calle, int numerodom, int cp) {
+            return base.Channel.TraerIdDomicilio(calle, numerodom, cp);
+        }
+        
+        public System.Threading.Tasks.Task<int> TraerIdDomicilioAsync(string calle, int numerodom, int cp) {
+            return base.Channel.TraerIdDomicilioAsync(calle, numerodom, cp);
+        }
+        
+        public bool AgregarDetalleCompra(int cantidad, int total, int iddireccion, int idusuario, int metodopago) {
+            return base.Channel.AgregarDetalleCompra(cantidad, total, iddireccion, idusuario, metodopago);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AgregarDetalleCompraAsync(int cantidad, int total, int iddireccion, int idusuario, int metodopago) {
+            return base.Channel.AgregarDetalleCompraAsync(cantidad, total, iddireccion, idusuario, metodopago);
+        }
+        
+        public bool ActualizarStock(int cantidad, string nombreprod) {
+            return base.Channel.ActualizarStock(cantidad, nombreprod);
+        }
+        
+        public System.Threading.Tasks.Task<bool> ActualizarStockAsync(int cantidad, string nombreprod) {
+            return base.Channel.ActualizarStockAsync(cantidad, nombreprod);
         }
     }
 }

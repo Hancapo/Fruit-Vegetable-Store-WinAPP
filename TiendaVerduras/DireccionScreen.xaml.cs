@@ -12,11 +12,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MessageBox = System.Windows.MessageBox;
 
 namespace TiendaVerduras
 {
@@ -27,12 +29,21 @@ namespace TiendaVerduras
     {
         Utilidades u = new Utilidades();
         SqlConnection ss = new SqlConnection(@"Data Source=(Localdb)\tiendaduoc;Initial Catalog=Tienda;Integrated Security=true;");
-        ValidacionLogin.ServiceClient vsc = new ValidacionLogin.ServiceClient(); 
+        ValidacionLogin.ServiceClient vsc = new ValidacionLogin.ServiceClient();
+
+        static public DomicilioData dd { get; set; } = new DomicilioData();
+
         public DireccionScreen()
         {
             InitializeComponent();
             MostrarDomicilios();
         }
+
+        public DomicilioData Domicilios()
+        {
+            return dd;
+        }
+
 
         private void btnVolver_Click(object sender, RoutedEventArgs e)
         {
@@ -115,6 +126,18 @@ namespace TiendaVerduras
             }
             else
             {
+                var datos = ListaDomicilios.SelectedItem as DomicilioData;
+
+                dd.Calle = datos.Calle;
+                dd.Ciudad = datos.Ciudad;
+                dd.CodigoPostal = datos.CodigoPostal;
+                dd.Comuna = datos.Comuna;
+                dd.IdUsuario = datos.IdUsuario;
+                dd.NumeroDomicilio = datos.NumeroDomicilio;
+                dd.Pais = datos.Pais;
+                dd.IdDom = vsc.TraerIdDomicilio(datos.Calle, datos.NumeroDomicilio, datos.CodigoPostal);
+                
+
                 this.NavigationService.Navigate(new MetodoPagoScreen());
             }
         }

@@ -23,6 +23,7 @@
         <xs:element minOccurs="0" name="user" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="TipoU" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="run" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="telefono" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -118,6 +119,70 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="AgregarDomicilioResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BorrarPorId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:int" />
+        <xs:element minOccurs="0" name="tabla" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BorrarPorIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="BorrarPorIdResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TraerIdDomicilio">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="calle" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="numerodom" type="xs:int" />
+        <xs:element minOccurs="0" name="cp" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TraerIdDomicilioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="TraerIdDomicilioResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AgregarDetalleCompra">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cantidad" type="xs:int" />
+        <xs:element minOccurs="0" name="total" type="xs:int" />
+        <xs:element minOccurs="0" name="iddireccion" type="xs:int" />
+        <xs:element minOccurs="0" name="idusuario" type="xs:int" />
+        <xs:element minOccurs="0" name="metodopago" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AgregarDetalleCompraResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AgregarDetalleCompraResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ActualizarStock">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cantidad" type="xs:int" />
+        <xs:element minOccurs="0" name="nombreprod" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ActualizarStockResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ActualizarStockResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

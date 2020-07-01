@@ -21,9 +21,18 @@ namespace TiendaVerduras
     /// </summary>
     public partial class MetodoPagoScreen : Page
     {
+        static int metodopago { get; set; }
+        CarritoScreen cs = new CarritoScreen();
+
         public MetodoPagoScreen()
         {
             InitializeComponent();
+            lbTotalAPagar.Content = "Total a pagar: " + cs.lblTotal.Text;
+        }
+
+        public int tipopago()
+        {
+            return metodopago;
         }
 
         private void tbNumeroTarjeta_TextChanged(object sender, TextChangedEventArgs e)
@@ -76,7 +85,7 @@ namespace TiendaVerduras
         private void btnPagar_Click(object sender, RoutedEventArgs e)
         {
             int contadorvalidacion = 0;
-
+            metodopago = 1;
 
             if (tbNumeroTarjeta.Text.Length < 19)
             {
@@ -112,8 +121,24 @@ namespace TiendaVerduras
             if (contadorvalidacion == 3)
             {
                 MessageBox.Show("Se ha realizado un pago efectivo.", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                this.NavigationService.Navigate(new FinalizarCompraScreen());
 
             }
+        }
+
+        private void rbEfectivo_Checked(object sender, RoutedEventArgs e)
+        {
+            btnPagarEfectivo.Visibility = Visibility.Visible;
+
+        }
+
+        private void btnPagarEfectivo_Click(object sender, RoutedEventArgs e)
+        {
+            metodopago = 2;
+            MessageBox.Show("Pedido por pagar.", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+            this.NavigationService.Navigate(new FinalizarCompraScreen());
+
+
         }
     }
 }

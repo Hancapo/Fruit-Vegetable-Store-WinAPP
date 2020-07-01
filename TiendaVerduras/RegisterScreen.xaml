@@ -19,16 +19,21 @@
       Title="RegisterScreen">
 
     <Grid>
-        <StackPanel Margin="150" Orientation="Vertical" HorizontalAlignment="Center">
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-                <TextBox x:Name="tbUsuario" materialDesign:HintAssist.Hint="Nombre de usuario" Width="200" Margin="20" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="100">
+                <TextBox MaxLength="20" x:Name="tbUsuario" materialDesign:HintAssist.Hint="Nombre de usuario" Width="200" Margin="20" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                 <TextBox x:Name="tbCorreo" Width="200" materialDesign:HintAssist.Hint="Correo electrónico" Margin="20" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                 <PasswordBox x:Name="tbPassword" VerticalAlignment="Center" Width="200" Margin="20" materialDesign:HintAssist.Hint="Contraseña" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                <TextBox MaxLength="9" x:Name="tbTelefono" VerticalAlignment="Center" Width="200" Margin="20" materialDesign:HintAssist.Hint="Teléfono" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                 <TextBox x:Name="tbRUN" materialDesign:HintAssist.Hint="RUN" Width="200" Margin="20" MaxLength="10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.HelperText="Incluye el digito verificador" TextChanged="tbRUN_TextChanged"/>
-                <Button x:Name="btnAgregar" Click="btnAgregar_Click" Content="Crear usuario" Margin="20" />
             </StackPanel>
+            <StackPanel>
+                <Button x:Name="btnAgregar" Click="btnAgregar_Click" Content="Crear usuario" Width="150" Margin="0,-50,0,0"/>
+
+            </StackPanel>
+            <StackPanel/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="50">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10">
             <Button x:Name="btnVolver" Content="Volver" Click="btnVolver_Click"/>
         </StackPanel>
     </Grid>
